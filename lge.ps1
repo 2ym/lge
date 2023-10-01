@@ -10,12 +10,11 @@ if (!([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]:
 
 Write-Host "Starting LGE..." -ForegroundColor "Cyan"
 
-Write-Host "██╗      ██████╗ ███████╗" -ForegroundColor "Blue"
-Write-Host "██║     ██╔════╝ ██╔════╝" -ForegroundColor "Blue"
-Write-Host "██║     ██║  ███╗█████╗  " -ForegroundColor "Blue"
-Write-Host "██║     ██║   ██║██╔══╝  " -ForegroundColor "Blue"
-Write-Host "███████╗╚██████╔╝███████╗" -ForegroundColor "Blue"
-Write-Host "╚══════╝ ╚═════╝ ╚══════╝" -ForegroundColor "Blue"
+Write-Host "  _     ____ _____ " -ForegroundColor "Blue"
+Write-Host " | |   / ___| ____|" -ForegroundColor "Blue"
+Write-Host " | |  | |  _|  _|  " -ForegroundColor "Blue"
+Write-Host " | |__| |_| | |___ " -ForegroundColor "Blue"
+Write-Host " |_____\____|_____|" -ForegroundColor "Blue"
 
 Write-Host "2023 - GCE-Bayreuth" -ForegroundColor "Blue"
 
