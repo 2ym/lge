@@ -10,6 +10,15 @@ if (!([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]:
 
 Write-Host "Starting LGE..." -ForegroundColor "Cyan"
 
+Write-Host "██╗      ██████╗ ███████╗" -ForegroundColor "Blue"
+Write-Host "██║     ██╔════╝ ██╔════╝" -ForegroundColor "Blue"
+Write-Host "██║     ██║  ███╗█████╗  " -ForegroundColor "Blue"
+Write-Host "██║     ██║   ██║██╔══╝  " -ForegroundColor "Blue"
+Write-Host "███████╗╚██████╔╝███████╗" -ForegroundColor "Blue"
+Write-Host "╚══════╝ ╚═════╝ ╚══════╝" -ForegroundColor "Blue"
+
+Write-Host "2023 - GCE-Bayreuth" -ForegroundColor "Blue"
+
 (Get-WmiObject Win32_ComputerSystem).Rename("Placeholder") | Out-Null
 
 ###############################################################################
