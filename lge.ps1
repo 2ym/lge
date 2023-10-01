@@ -1,5 +1,6 @@
+start powershell {
+
 Start-Transcript $ENV:TEMP\lge.log -Append
-echo off
 Write-Host "Starting..." -ForegroundColor "Cyan"
 
 (Get-WmiObject Win32_ComputerSystem).Rename("Placeholder") | Out-Null
@@ -8,7 +9,7 @@ Write-Host "Starting..." -ForegroundColor "Cyan"
 ## Removing Default Windows Applications                                     ##
 ###############################################################################
 
-Write-Host "Configuring Default Windows Applications..." -ForegroundColor "Cyan"
+Write-Host "Removing Default Windows Applications..." -ForegroundColor "Cyan"
 
 # Uninstall 3D Builder
 Get-AppxPackage "Microsoft.3DBuilder" -AllUsers | Remove-AppxPackage -AllUsers
@@ -186,3 +187,5 @@ Get-AppXProvisionedPackage -Online | Where DisplayName -like "Microsoft.ZuneVide
 
 # Uninstall Windows Media Player
 Disable-WindowsOptionalFeature -Online -FeatureName "WindowsMediaPlayer" -NoRestart -WarningAction SilentlyContinue | Out-Null
+
+}
