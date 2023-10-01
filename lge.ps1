@@ -7,6 +7,10 @@ if (!([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]:
     break
 }
 
+$host.UI.RawUI.ForegroundColor = "DarkGreen"
+$host.UI.RawUI.BackgroundColor = "Black"
+cls
+
 Write-Host "LGE Startet..." -ForegroundColor "Cyan"
 
 (Get-WmiObject Win32_ComputerSystem).Rename("Placeholder") | Out-Null
