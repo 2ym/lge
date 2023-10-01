@@ -2,12 +2,12 @@ cls
 Start-Transcript $ENV:TEMP\lge.log -Append
 
 if (!([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)) {
-    Write-Host "LGE muss als Administrator ausgeführt werden. LGE startet neu als Administrator..." -ForegroundColor "Cyan"
+    Write-Host "LGE needs to be run as Administrator. Attempting to relaunch." -ForegroundColor "Cyan"
     Start-Process -Verb runas -FilePath "C:\Users\Admin\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Windows PowerShell\Windows PowerShell.lnk" -ArgumentList "-NoExit iwr -useb https://is.gd/HRUZnv | iex"
     break
 }
 
-Write-Host "LGE Startet..." -ForegroundColor "Cyan"
+Write-Host "Starting LGE..." -ForegroundColor "Cyan"
 
 (Get-WmiObject Win32_ComputerSystem).Rename("Placeholder") | Out-Null
 
@@ -15,7 +15,7 @@ Write-Host "LGE Startet..." -ForegroundColor "Cyan"
 ## Removing Default Windows Applications                                     ##
 ###############################################################################
 
-Write-Host "Entfernen überflüssiger Windows Programme..." -ForegroundColor "Cyan"
+Write-Host "Removing Default Windows Applications..." -ForegroundColor "Cyan"
 
 # Uninstall 3D Builder
 Get-AppxPackage "Microsoft.3DBuilder" -AllUsers | Remove-AppxPackage -AllUsers
@@ -194,4 +194,4 @@ Get-AppXProvisionedPackage -Online | Where DisplayName -like "Microsoft.ZuneVide
 # Uninstall Windows Media Player
 Disable-WindowsOptionalFeature -Online -FeatureName "WindowsMediaPlayer" -NoRestart -WarningAction SilentlyContinue | Out-Null
 
-Read-Host -Prompt "Zum Beenden Enter drücken"
+Read-Host -Prompt "Press Enter to exit"
