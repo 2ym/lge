@@ -1,7 +1,13 @@
-start powershell {
-
+cls
 Start-Transcript $ENV:TEMP\lge.log -Append
-Write-Host "Starting..." -ForegroundColor "Cyan"
+
+if (!([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)) {
+    Write-Output "LGE muss als Administrator ausgeführt werden. LGE startet neu als Administrator..."
+    Start-Process -Verb runas -FilePath powershell.exe -ArgumentList "iwr -useb https://christitus.com/win | iex"
+    break
+}
+
+Write-Host "LGE Startet..." -ForegroundColor "Cyan"
 
 (Get-WmiObject Win32_ComputerSystem).Rename("Placeholder") | Out-Null
 
@@ -9,7 +15,7 @@ Write-Host "Starting..." -ForegroundColor "Cyan"
 ## Removing Default Windows Applications                                     ##
 ###############################################################################
 
-Write-Host "Removing Default Windows Applications..." -ForegroundColor "Cyan"
+Write-Host "Entfernen überflüssiger Windows Programme..." -ForegroundColor "Cyan"
 
 # Uninstall 3D Builder
 Get-AppxPackage "Microsoft.3DBuilder" -AllUsers | Remove-AppxPackage -AllUsers
