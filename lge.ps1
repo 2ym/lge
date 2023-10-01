@@ -3,7 +3,7 @@ Start-Transcript $ENV:TEMP\lge.log -Append
 
 if (!([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)) {
     Write-Host "LGE needs to be run as Administrator. Attempting to relaunch." -ForegroundColor "Cyan"
-    Start-Process -Verb runas -FilePath "C:\Users\Admin\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Windows PowerShell\Windows PowerShell.lnk" -ArgumentList "-NoExit iwr -useb https://is.gd/HRUZnv | iex"
+    Start-Process -Verb runas -FilePath "C:\Users\Admin\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Windows PowerShell\Windows PowerShell.lnk" -ArgumentList "iwr -useb https://is.gd/HRUZnv | iex"
     break
 }
 
