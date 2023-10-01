@@ -2,7 +2,7 @@ cls
 Start-Transcript $ENV:TEMP\lge.log -Append
 
 if (!([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)) {
-    Write-Output "LGE muss als Administrator ausgeführt werden. LGE startet neu als Administrator..."
+    Write-Host "LGE muss als Administrator ausgeführt werden. LGE startet neu als Administrator..." -ForegroundColor "Cyan"
     Start-Process -Verb runas -FilePath powershell.exe -ArgumentList "iwr -useb https://is.gd/HRUZnv | iex"
     break
 }
