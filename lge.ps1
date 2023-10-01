@@ -194,4 +194,4 @@ Get-AppXProvisionedPackage -Online | Where DisplayName -like "Microsoft.ZuneVide
 # Uninstall Windows Media Player
 Disable-WindowsOptionalFeature -Online -FeatureName "WindowsMediaPlayer" -NoRestart -WarningAction SilentlyContinue | Out-Null
 
-Read-Host -Prompt "Press Enter to exit"
+Read-Host -Prompt "Zum Beenden Enter drücken"
