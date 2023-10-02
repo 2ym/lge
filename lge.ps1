@@ -6,19 +6,20 @@ if (!([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]:
     break
 }
 
+
 cls
-Write-Host "##########################" -ForegroundColor "Blue"
-Write-Host "#                        #" -ForegroundColor "Blue"
-Write-Host "#    _     ____ _____    #" -ForegroundColor "Blue"
-Write-Host "#   | |   / ___| ____|   #" -ForegroundColor "Blue"
-Write-Host "#   | |  | |  _|  _|     #" -ForegroundColor "Blue"
-Write-Host "#   | |__| |_| | |___    #" -ForegroundColor "Blue"
-Write-Host "#   |_____\____|_____|   #" -ForegroundColor "Blue"
-Write-Host "#                        #" -ForegroundColor "Blue"
-Write-Host "#   2023 - GCE-Bayreuth  #" -ForegroundColor "Blue"
-Write-Host "#                        #" -ForegroundColor "Blue"
-Write-Host "##########################" -ForegroundColor "Blue"
-Write-Host ""
+Write-Host "###########################" -ForegroundColor "Blue"
+Write-Host "#                         #" -ForegroundColor "Blue"
+Write-Host "#   _      _____ ______   #" -ForegroundColor "Blue"
+Write-Host "#  | |    / ____|  ____|  #" -ForegroundColor "Blue"
+Write-Host "#  | |   | |  __| |__     #" -ForegroundColor "Blue"
+Write-Host "#  | |   | | |_ |  __|    #" -ForegroundColor "Blue"
+Write-Host "#  | |___| |__| | |____   #" -ForegroundColor "Blue"
+Write-Host "#  |______\_____|______|  #" -ForegroundColor "Blue"
+Write-Host "#                         #" -ForegroundColor "Blue"
+Write-Host "#   2023 - GCE-Bayreuth   #" -ForegroundColor "Blue"
+Write-Host "#                         #" -ForegroundColor "Blue"
+Write-Host "###########################" -ForegroundColor "Blue"
 
 Write-Host "Starting LGE..." -ForegroundColor "Cyan"
 
