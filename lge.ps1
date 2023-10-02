@@ -20,7 +20,7 @@ Write-Host "#                         #" -ForegroundColor "Blue"
 Write-Host "#   2023 - GCE-Bayreuth   #" -ForegroundColor "Blue"
 Write-Host "#                         #" -ForegroundColor "Blue"
 Write-Host "###########################" -ForegroundColor "Blue"
-
+Write-Host ""
 Write-Host "Starting LGE..." -ForegroundColor "Cyan"
 
 Start-Transcript $ENV:TEMP\lge$rand.log -Append
