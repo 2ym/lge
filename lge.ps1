@@ -1,6 +1,4 @@
-cls
 $rand = Get-Random -Maximum 999
-Start-Transcript $ENV:TEMP\lge$rand.log -Append
 
 if (!([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)) {
     Write-Host "LGE needs to be run as Administrator. Attempting to relaunch." -ForegroundColor "Cyan"
@@ -8,16 +6,23 @@ if (!([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]:
     break
 }
 
+cls
+Write-Host "##########################" -ForegroundColor "Blue"
+Write-Host "#                        #" -ForegroundColor "Blue"
+Write-Host "#    _     ____ _____    #" -ForegroundColor "Blue"
+Write-Host "#   | |   / ___| ____|   #" -ForegroundColor "Blue"
+Write-Host "#   | |  | |  _|  _|     #" -ForegroundColor "Blue"
+Write-Host "#   | |__| |_| | |___    #" -ForegroundColor "Blue"
+Write-Host "#   |_____\____|_____|   #" -ForegroundColor "Blue"
+Write-Host "#                        #" -ForegroundColor "Blue"
+Write-Host "#   2023 - GCE-Bayreuth  #" -ForegroundColor "Blue"
+Write-Host "#                        #" -ForegroundColor "Blue"
+Write-Host "##########################" -ForegroundColor "Blue"
+Write-Host ""
+
 Write-Host "Starting LGE..." -ForegroundColor "Cyan"
 
-Write-Host "  _     ____ _____ " -ForegroundColor "Blue"
-Write-Host " | |   / ___| ____|" -ForegroundColor "Blue"
-Write-Host " | |  | |  _|  _|  " -ForegroundColor "Blue"
-Write-Host " | |__| |_| | |___ " -ForegroundColor "Blue"
-Write-Host " |_____\____|_____|" -ForegroundColor "Blue"
-
-Write-Host "2023 - GCE-Bayreuth" -ForegroundColor "Blue"
-
+Start-Transcript $ENV:TEMP\lge$rand.log -Append
 (Get-WmiObject Win32_ComputerSystem).Rename("Placeholder") | Out-Null
 
 ###############################################################################
