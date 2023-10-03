@@ -1,4 +1,3 @@
-$rand = Get-Random -Maximum 999
 $winbuild_s = 22621
 $winbuild_i = [System.Environment]::OSVersion.Version.Build
 $username_i = [System.Environment]::UserName
@@ -6,7 +5,7 @@ $username_i = [System.Environment]::UserName
 if ( $winbuild_i -eq $winbuild_s ) {
     Write-Host "Windows Build $winbuild_s detected." -ForegroundColor "Cyan"
 } else {
-    Write-Host "Windows Build $winbuild_i detected, but LGE needs to be run on Windows Build $winbuild_s." -ForegroundColor "Red"
+    Write-Host "Windows Build $winbuild_i detected, but LGE needs to run on Windows Build $winbuild_s." -ForegroundColor "Red"
     break
 }
 
