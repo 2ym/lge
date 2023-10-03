@@ -215,4 +215,8 @@ Get-AppXProvisionedPackage -Online | Where DisplayName -like "Microsoft.WindowsF
 Get-AppxPackage "Microsoft.Getstarted" -AllUsers | Remove-AppxPackage -AllUsers
 Get-AppXProvisionedPackage -Online | Where DisplayName -like "Microsoft.Getstarted" | Remove-AppxProvisionedPackage -Online -AllUsers
 
+# Uninstall Quick Assist (Remotehilfe)
+Get-AppxPackage "MicrosoftCorporationII.QuickAssist" -AllUsers | Remove-AppxPackage -AllUsers
+Get-AppXProvisionedPackage -Online | Where DisplayName -like "MicrosoftCorporationII.QuickAssist" | Remove-AppxProvisionedPackage -Online -AllUsers
+
 Read-Host -Prompt "Press Enter to exit"
