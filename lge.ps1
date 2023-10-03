@@ -1,6 +1,4 @@
 $rand = Get-Random -Maximum 999
-$winver_s = 11
-$winver_i = [System.Environment]::OSVersion.Version.Major
 $winbuild_s = 22621
 $winbuild_i = [System.Environment]::OSVersion.Version.Build
 
@@ -10,10 +8,10 @@ if (!([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]:
     break
 }
 
-if ( $winver_i -eq $winver_s -and $winbuild_i -eq $winbuild_s) {
-    Write-Host "Windows $winver_s Build $winbuild_s detected." -ForegroundColor "Cyan"
+if ( $winbuild_i -eq $winbuild_s) {
+    Write-Host "Windows Build $winbuild_s detected." -ForegroundColor "Cyan"
 } else {
-    Write-Host "Windows $winver_i Build $winbuild_i detected, but LGE needs to be run on Windows $winver_s Build $winbuild_s." -ForegroundColor "Red"
+    Write-Host "Windows Build $winbuild_i detected, but LGE needs to be run on Windows Build $winbuild_s." -ForegroundColor "Red"
     break
 }
 
