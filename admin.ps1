@@ -1,3 +1,5 @@
+$rand = Get-Random -Maximum 999
+
 # cls
 Write-Host "###########################" -ForegroundColor "Blue"
 Write-Host "#                         #" -ForegroundColor "Blue"
