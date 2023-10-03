@@ -10,7 +10,7 @@ if (!([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]:
     break
 }
 
-if ( $winver_i -eq $winver_s -and winbuild_i -eq $winbuild_s) {
+if ( $winver_i -eq $winver_s -and $winbuild_i -eq $winbuild_s) {
     Write-Host "Windows $winver_s Build $winbuild_s detected." -ForegroundColor "Cyan"
 } else {
     Write-Host "Windows $winver_i Build $winbuild_i detected, but LGE needs to be run on Windows $winver_s Build $winbuild_s." -ForegroundColor "Red"
