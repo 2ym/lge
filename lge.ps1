@@ -1,4 +1,6 @@
 $rand = Get-Random -Maximum 999
+$winver_s = 11
+$winver_i = [System.Environment]::OSVersion.Version.Major
 
 if (!([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)) {
     Write-Host "LGE needs to be run as Administrator. Attempting to relaunch." -ForegroundColor "Cyan"
@@ -6,6 +8,12 @@ if (!([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]:
     break
 }
 
+if ( $winver_i -eq $winver_s) {
+    Write-Host "Windows $winver_s detected." -ForegroundColor "Cyan"
+} else {
+    Write-Host "Windows $winver_s detected, but LGE needs to be run on Windows $winver_s." -ForegroundColor "Red"
+    break
+}
 
 cls
 Write-Host "###########################" -ForegroundColor "Blue"
