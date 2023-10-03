@@ -5,26 +5,20 @@ $winbuild_s = 22621
 $winbuild_i = [System.Environment]::OSVersion.Version.Build
 
 if (!([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)) {
-    Write-Host "LGE needs to be run as Administrator. Attempting to relaunch." -ForegroundColor "Cyan"
+    Write-Host "LGE needs to be run as Administrator. Attempting to relaunch." -ForegroundColor "Yellow"
     Start-Process -Verb runas -FilePath "C:\Users\Admin\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Windows PowerShell\Windows PowerShell.lnk" -ArgumentList "iwr -useb https://is.gd/HRUZnv | iex"
     break
 }
 
-if ( $winver_i -eq $winver_s) {
-    Write-Host "Windows $winver_s detected." -ForegroundColor "Cyan"
+if ( $winver_i -eq $winver_s -and winbuild_i -eq $winbuild_s) {
+    Write-Host "Windows $winver_s Build $winbuild_s detected." -ForegroundColor "Cyan"
 } else {
-    Write-Host "Windows $winver_i detected, but LGE needs to be run on Windows $winver_s." -ForegroundColor "Red"
+    Write-Host "Windows $winver_i Build $winbuild_i detected, but LGE needs to be run on Windows $winver_s Build $winbuild_s." -ForegroundColor "Red"
     break
 }
 
-if ( $winver_i -eq $winver_s) {
-    Write-Host "Windows $winver_s detected." -ForegroundColor "Cyan"
-} else {
-    Write-Host "Windows $winver_i detected, but LGE needs to be run on Windows $winver_s." -ForegroundColor "Red"
-    break
-}
 
-cls
+# cls
 Write-Host "###########################" -ForegroundColor "Blue"
 Write-Host "#                         #" -ForegroundColor "Blue"
 Write-Host "#   _      _____ ______   #" -ForegroundColor "Blue"
