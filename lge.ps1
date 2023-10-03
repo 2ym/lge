@@ -3,21 +3,6 @@ $winbuild_s = 22621
 $winbuild_i = [System.Environment]::OSVersion.Version.Build
 $username_i = [System.Environment]::UserName
 
-if ( $username_i -eq "Admin" ) {
-    Write-Host "Admin Account detected." -ForegroundColor "Cyan"
-    Start-Process -Verb runas -FilePath "C:\Users\Admin\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Windows PowerShell\Windows PowerShell.lnk" -ArgumentList "iwr -useb https://raw.githubusercontent.com/2ym/lge/main/admin.ps1 | iex"
-} elseif ( $username_i -eq "Lehrer" ) {
-    Write-Host "Lehrer Account detected." -ForegroundColor "Cyan"
-} else {
-    Write-Host "No valid Account Name detected." -ForegroundColor "Red"
-}
-
-if (!([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)) {
-    Write-Host "LGE needs to be run as Administrator. Attempting to relaunch." -ForegroundColor "Yellow"
-    Start-Process -Verb runas -FilePath "C:\Users\Admin\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Windows PowerShell\Windows PowerShell.lnk" -ArgumentList "iwr -useb https://raw.githubusercontent.com/2ym/lge/main/lehrer.ps1 | iex"
-    break
-}
-
 if ( $winbuild_i -eq $winbuild_s ) {
     Write-Host "Windows Build $winbuild_s detected." -ForegroundColor "Cyan"
 } else {
@@ -25,6 +10,15 @@ if ( $winbuild_i -eq $winbuild_s ) {
     break
 }
 
+if ( $username_i -eq "Admin" ) {
+    Write-Host "Admin Account detected." -ForegroundColor "Cyan"
+    Start-Process -Verb runas -FilePath "C:\Users\Admin\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Windows PowerShell\Windows PowerShell.lnk" -ArgumentList "iwr -useb https://raw.githubusercontent.com/2ym/lge/main/admin.ps1 | iex"
+} elseif ( $username_i -eq "Lehrer" ) {
+    Write-Host "Lehrer Account detected." -ForegroundColor "Cyan"
+    Start-Process -Verb runas -FilePath "C:\Users\Lehrer\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Windows PowerShell\Windows PowerShell.lnk" -ArgumentList "iwr -useb https://raw.githubusercontent.com/2ym/lge/main/lehrer.ps1 | iex"
+} else {
+    Write-Host "No valid Account Name detected." -ForegroundColor "Red"
+}
 
 # cls
 Write-Host "###########################" -ForegroundColor "Blue"
