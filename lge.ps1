@@ -17,4 +17,5 @@ if ( $username_i -eq "Admin" ) {
     Start-Process -Verb runas -FilePath "C:\Users\Lehrer\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Windows PowerShell\Windows PowerShell.lnk" -ArgumentList "iwr -useb https://raw.githubusercontent.com/2ym/lge/main/lehrer.ps1 | iex"
 } else {
     Write-Host "No valid Account Name detected." -ForegroundColor "Red"
+    break
 }
