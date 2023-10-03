@@ -1,6 +1,15 @@
 $rand = Get-Random -Maximum 999
 $winbuild_s = 22621
 $winbuild_i = [System.Environment]::OSVersion.Version.Build
+$username_i = [System.Environment]::UserName
+
+if ( $username_i -eq "Admin" ) {
+    Write-Host "Admin Account detected." -ForegroundColor "Cyan"
+} elseif ( $username_i -eq "Lehrer" ) {
+    Write-Host "Lehrer Account detected." -ForegroundColor "Cyan"
+} else {
+    Write-Host "No valid Account Name detected." -ForegroundColor "Red"
+}
 
 if (!([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)) {
     Write-Host "LGE needs to be run as Administrator. Attempting to relaunch." -ForegroundColor "Yellow"
@@ -8,7 +17,7 @@ if (!([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]:
     break
 }
 
-if ( $winbuild_i -eq $winbuild_s) {
+if ( $winbuild_i -eq $winbuild_s ) {
     Write-Host "Windows Build $winbuild_s detected." -ForegroundColor "Cyan"
 } else {
     Write-Host "Windows Build $winbuild_i detected, but LGE needs to be run on Windows Build $winbuild_s." -ForegroundColor "Red"
