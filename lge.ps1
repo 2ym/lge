@@ -11,7 +11,7 @@ if (!([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]:
 if ( $winver_i -eq $winver_s) {
     Write-Host "Windows $winver_s detected." -ForegroundColor "Cyan"
 } else {
-    Write-Host "Windows $winver_s detected, but LGE needs to be run on Windows $winver_s." -ForegroundColor "Red"
+    Write-Host "Windows $winver_i detected, but LGE needs to be run on Windows $winver_s." -ForegroundColor "Red"
     break
 }
 
