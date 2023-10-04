@@ -14,20 +14,6 @@ if ( $build_i -eq $build_s ) {
     break
 }
 
-if ( $user_i -eq $user_1 ) {
-    Write-Host "$user_1 Account detected." -ForegroundColor "Cyan"
-    Start-Process -Verb runas -FilePath "C:\Users\$user_1\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Windows PowerShell\Windows PowerShell.lnk" -ArgumentList "iwr -useb https://raw.githubusercontent.com/2ym/lge/main/admin.ps1 | iex"
-} elseif ( $user_i -eq $user_2 ) {
-    Write-Host "$user_2 Account detected." -ForegroundColor "Cyan"
-    Start-Process -Verb runas -FilePath "C:\Users\$user_2\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Windows PowerShell\Windows PowerShell.lnk" -ArgumentList "iwr -useb https://raw.githubusercontent.com/2ym/lge/main/lehrer.ps1 | iex"
-} elseif ( $user_i -eq $user_3 ) {
-    Write-Host "$user_3 Account detected." -ForegroundColor "Cyan"
-    Start-Process -Verb runas -FilePath "C:\Users\$user_3\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Windows PowerShell\Windows PowerShell.lnk" -ArgumentList "iwr -useb https://raw.githubusercontent.com/2ym/lge/main/lehrer.ps1 | iex"
-} else {
-    Write-Host "No valid Account Name detected." -ForegroundColor "Red"
-    break
-}
-
 # cls
 Write-Host "###########################" -ForegroundColor "Blue"
 Write-Host "#                         #" -ForegroundColor "Blue"
@@ -39,11 +25,23 @@ Write-Host "#  | |___| |__| | |____   #" -ForegroundColor "Blue"
 Write-Host "#  |______\_____|______|  #" -ForegroundColor "Blue"
 Write-Host "#                         #" -ForegroundColor "Blue"
 Write-Host "#   2023 - GCE-Bayreuth   #" -ForegroundColor "Blue"
-Write-Host "#      ADMIN EDITION      #" -ForegroundColor "Blue"
 Write-Host "#                         #" -ForegroundColor "Blue"
 Write-Host "###########################" -ForegroundColor "Blue"
 Write-Host ""
-Write-Host "Starting LGE..." -ForegroundColor "Cyan"
+
+if ( $user_i -eq $user_1 ) {
+    Write-Host "$user_1 Account detected." -ForegroundColor "Green"
+    Start-Process -Verb runas -FilePath "C:\Users\$user_1\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Windows PowerShell\Windows PowerShell.lnk" -ArgumentList "iwr -useb https://raw.githubusercontent.com/2ym/lge/main/admin.ps1 | iex"
+} elseif ( $user_i -eq $user_2 ) {
+    Write-Host "$user_2 Account detected." -ForegroundColor "Green"
+    Start-Process -Verb runas -FilePath "C:\Users\$user_2\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Windows PowerShell\Windows PowerShell.lnk" -ArgumentList "iwr -useb https://raw.githubusercontent.com/2ym/lge/main/lehrer.ps1 | iex"
+} elseif ( $user_i -eq $user_3 ) {
+    Write-Host "$user_3 Account detected." -ForegroundColor "Green"
+    Start-Process -Verb runas -FilePath "C:\Users\$user_3\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Windows PowerShell\Windows PowerShell.lnk" -ArgumentList "iwr -useb https://raw.githubusercontent.com/2ym/lge/main/lehrer.ps1 | iex"
+} else {
+    Write-Host "No valid Account Name detected." -ForegroundColor "Red"
+    break
+}
 
 Start-Transcript $ENV:TEMP\lge$rand.log -Append
 (Get-WmiObject Win32_ComputerSystem).Rename("Placeholder") | Out-Null
