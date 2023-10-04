@@ -31,13 +31,13 @@ Write-Host ""
 
 if ( $user_i -eq $user_1 ) {
     Write-Host "$user_1 Account detected." -ForegroundColor "Green"
-    Start-Process -Verb runas -FilePath "C:\Users\$user_1\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Windows PowerShell\Windows PowerShell.lnk" -ArgumentList "iwr -useb https://raw.githubusercontent.com/2ym/lge/main/admin.ps1 | iex"
+    # Start-Process -Verb runas -FilePath "C:\Users\$user_1\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Windows PowerShell\Windows PowerShell.lnk" -ArgumentList "iwr -useb https://raw.githubusercontent.com/2ym/lge/main/admin.ps1 | iex"
 } elseif ( $user_i -eq $user_2 ) {
     Write-Host "$user_2 Account detected." -ForegroundColor "Green"
-    Start-Process -Verb runas -FilePath "C:\Users\$user_2\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Windows PowerShell\Windows PowerShell.lnk" -ArgumentList "iwr -useb https://raw.githubusercontent.com/2ym/lge/main/lehrer.ps1 | iex"
+    # Start-Process -Verb runas -FilePath "C:\Users\$user_2\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Windows PowerShell\Windows PowerShell.lnk" -ArgumentList "iwr -useb https://raw.githubusercontent.com/2ym/lge/main/lehrer.ps1 | iex"
 } elseif ( $user_i -eq $user_3 ) {
     Write-Host "$user_3 Account detected." -ForegroundColor "Green"
-    Start-Process -Verb runas -FilePath "C:\Users\$user_3\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Windows PowerShell\Windows PowerShell.lnk" -ArgumentList "iwr -useb https://raw.githubusercontent.com/2ym/lge/main/lehrer.ps1 | iex"
+    # Start-Process -Verb runas -FilePath "C:\Users\$user_3\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Windows PowerShell\Windows PowerShell.lnk" -ArgumentList "iwr -useb https://raw.githubusercontent.com/2ym/lge/main/lehrer.ps1 | iex"
 } else {
     Write-Host "No valid Account Name detected." -ForegroundColor "Red"
     break
