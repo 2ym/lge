@@ -8,20 +8,32 @@ $user_1 = "Admin"
 $user_2 = "Lehrer"
 $user_3 = "Schueler"
 
-$user_1_ac = '0xff008cff'
-$user_1_sm = '0xff0077e3'
-$user_1_ap = 'ff,d1,55,00,ff,b6,34,00,ff,99,10,00,ff,8c,00,00,e3,77,00,00,a1,46,00,00,65,19,00,00,00,63,b1,00'
-$user_1_ap_hexified = $user_1_ap.Split(',') | ForEach-Object { "0x$_" }
+$WindowsAccentColorMenu = @{
+  Gelbgold = '0xff00b9ff'
+  Gold = '0xff008cff'
+  Hellorange = '0xff0c63f7'
+  Ziegelrot = '0xff3834d1'
+  Rot = '0xff2311e8'
+  Grasgruen = '0xff6acc00'
+}
 
-$user_2_ac = '0xff008cff'
-$user_2_sm = '0xff0077e3'
-$user_2_ap = 'ff,d1,55,00,ff,b6,34,00,ff,99,10,00,ff,8c,00,00,e3,77,00,00,a1,46,00,00,65,19,00,00,00,63,b1,00'
-$user_2_ap_hexified = $user_1_ap.Split(',') | ForEach-Object { "0x$_" }
+$WindowsAccentPalette = @{
+  Gelbgold = 'fb,b4,b7,00,f3,8a,91,00,eb,5c,68,00,e7,48,56,00,e3,29,38,00,a6,16,1e,00,65,0d,0f,00,ff,8c,00,00'
+  Gold = 'ff,d1,55,00,ff,b6,34,00,ff,99,10,00,ff,8c,00,00,e3,77,00,00,a1,46,00,00,65,19,00,00,00,63,b1,00'
+  Hellorange = 'fe,bd,68,00,fb,9a,44,00,f8,74,1d,00,f7,63,0c,00,e0,53,07,00,a1,31,05,00,69,12,02,00,00,99,bc,00'
+  Ziegelrot = 'f7,b1,a5,00,e8,80,7a,00,d8,4b,4c,00,d1,34,38,00,be,2b,2e,00,8d,1a,1c,00,61,09,0a,00,64,7c,64,00'
+  Rot = 'fb,9d,8b,00,f4,67,62,00,ef,27,33,00,e8,11,23,00,d2,0e,1e,00,9e,09,12,00,6f,03,06,00,69,79,7e,00'
+  Grasgruen = '5f,ff,a5,00,26,ff,8e,00,00,e7,75,00,00,cc,6a,00,00,b2,5a,00,00,76,35,00,00,3f,13,00,e3,00,8c,00'
+}
 
-$user_3_ac = '0xff008cff'
-$user_3_sm = '0xff0077e3'
-$user_3_ap = 'ff,d1,55,00,ff,b6,34,00,ff,99,10,00,ff,8c,00,00,e3,77,00,00,a1,46,00,00,65,19,00,00,00,63,b1,00'
-$user_3_ap_hexified = $user_1_ap.Split(',') | ForEach-Object { "0x$_" }
+$WindowsStartColorMenu = @{
+  Gelbgold = '0xff009de1'
+  Gold = '0xff0077e3'
+  Hellorange = '0xff0753e0'
+  Ziegelrot = '0xff2e2bbe'
+  Rot = '0xff1e0ed2'
+  Grasgruen = '0xff5ab200'
+}
 
 
 if ( $build_i -eq $build_s ) {
@@ -49,9 +61,10 @@ Write-Host ""
 if ( $user_i -eq $user_1 ) {
     Write-Host "$user_1 Account detected." -ForegroundColor "Cyan"
     # Start-Process -Verb runas -FilePath "C:\Users\$user_1\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Windows PowerShell\Windows PowerShell.lnk" -ArgumentList "iwr -useb https://raw.githubusercontent.com/2ym/lge/main/ac-test.ps1 | iex"
-    Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Accent" -Name 'AccentColorMenu' -Value $user_1_ac -Force
-    Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Accent" -Name 'StartColorMenu' -Value $user_1_sm -Force
-    Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Accent" -Name 'AccentPalette' -Value ([byte[]]$user_1_ap_hexified) -Force
+    Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Accent" -Name 'AccentColorMenu' -Value $WindowsAccentColorMenu.Ziegelrot -Force
+    Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Accent" -Name 'StartColorMenu' -Value $WindowsStartColorMenu.Ziegelrot -Force
+    $hex = $WindowsAccentPalette.Ziegelrot.Split(',') | ForEach-Object { "0x$_" }
+    Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Accent" -Name 'AccentPalette' -Value ([byte[]]$hex) -Force
     Stop-Process -ProcessName explorer -Force -ErrorAction SilentlyContinue
     Write-Host "Colors set." -ForegroundColor "Cyan"
 } elseif ( $user_i -eq $user_2 ) {
