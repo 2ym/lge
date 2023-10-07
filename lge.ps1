@@ -37,64 +37,6 @@ $WindowsStartColorMenu = @{
 
 
 ###############################################################################
-## Set WallPaper from URL                                                    ##
-###############################################################################
-
-function Set-WallpaperFromURL {
-
-    param (
-        $url
-        $LockScreenImageValue
-	$directory
-    )
-
-    Write-Output $ComputerName
-
-
-
-# Test-MrParameter -ComputerName 'Moinsen'
-
-$RegKeyPath = "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\PersonalizationCSP"
-
-
-$LockScreenPath = "LockScreenImagePath"
-$LockScreenStatus = "LockScreenImageStatus"
-$LockScreenUrl = "LockScreenImageUrl"
-
-$StatusValue = "1"
-
-
-# $url = "https://www.thelazyadministrator.com/wp-content/uploads/2019/07/nicewall.jpg"
-# $LockScreenImageValue = "C:\MDM\wallpaper_LazyAdmin.jpg"
-# $directory = "C:\MDM\"
-
-
-If ((Test-Path -Path $directory) -eq $false)
-{
-	New-Item -Path $directory -ItemType directory
-}
-
-$wc = New-Object System.Net.WebClient
-$wc.DownloadFile($url, $LockScreenImageValue)
-
-
-
-if (!(Test-Path $RegKeyPath))
-{
-	Write-Host "Creating registry path $($RegKeyPath)."
-	New-Item -Path $RegKeyPath -Force | Out-Null
-}
-
-
-New-ItemProperty -Path $RegKeyPath -Name $LockScreenStatus -Value $StatusValue -PropertyType DWORD -Force | Out-Null
-New-ItemProperty -Path $RegKeyPath -Name $LockScreenPath -Value $LockScreenImageValue -PropertyType STRING -Force | Out-Null
-New-ItemProperty -Path $RegKeyPath -Name $LockScreenUrl -Value $LockScreenImageValue -PropertyType STRING -Force | Out-Null
-
-RUNDLL32.EXE USER32.DLL, UpdatePerUserSystemParameters 1, True
-
-}
-
-###############################################################################
 ## Verify right Windows Build                                                ##
 ###############################################################################
 
@@ -123,7 +65,7 @@ Write-Host ""
 
 if ( $user_i -eq $user_1 ) {
     Write-Host "$user_1 Account detected." -ForegroundColor "Cyan
-    Set-WallpaperFromURL -url 'https://raw.githubusercontent.com/2ym/lge/main/wallpaper-1.jpg' -LockScreenImageValue 'C:\LGE\WallpaperAdmin.jpg' -directory 'C:\LGE\'
+    # Set-WallpaperFromURL -url 'https://raw.githubusercontent.com/2ym/lge/main/wallpaper-1.jpg' -LockScreenImageValue 'C:\LGE\WallpaperAdmin.jpg' -directory 'C:\LGE\'
     # Start-Process -Verb runas -FilePath "C:\Users\$user_1\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Windows PowerShell\Windows PowerShell.lnk" -ArgumentList "iwr -useb https://raw.githubusercontent.com/2ym/lge/main/ac-test.ps1 | iex"
     Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Accent" -Name 'AccentColorMenu' -Value $WindowsAccentColorMenu.Ziegelrot -Force
     Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Accent" -Name 'StartColorMenu' -Value $WindowsStartColorMenu.Ziegelrot -Force
