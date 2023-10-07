@@ -338,3 +338,5 @@ Set-ItemProperty "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Contr
 
 # Registry Control Panel View
 Set-ItemProperty "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\ControlPanel" "StartupPage" 1
+
+Read-Host -Prompt "Press Enter to exit"
