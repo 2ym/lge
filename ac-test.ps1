@@ -10,3 +10,4 @@ function Test-MrParameter {
 
 Test-MrParameter -ComputerName 'Moinsen'
 
+Read-Host -Prompt "Press Enter to exit"
