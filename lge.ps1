@@ -42,9 +42,9 @@ $WindowsStartColorMenu = @{
 function Set-WallpaperFromURL {
 
     param (
-        $url
-        $LockScreenImageValue
-	      $directory
+        $url,
+        $LockScreenImageValue,
+	$directory
     )
 
 
