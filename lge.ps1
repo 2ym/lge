@@ -96,8 +96,11 @@ Write-Host ""
 if ( $user_i -eq $user_1 ) {
     Write-Host "$user_1 Account detected." -ForegroundColor "Cyan"
     # Start-Process -Verb runas -FilePath "C:\Users\$user_1\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Windows PowerShell\Windows PowerShell.lnk" -ArgumentList "iwr -useb https://raw.githubusercontent.com/2ym/lge/main/ac-test.ps1 | iex"
-    Set-Color($user_1_ac, $user_1_ap, $user_1_sm)
-    break
+    # Set-Color($user_1_ac, $user_1_ap, $user_1_sm)
+    Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Accent" -Name 'AccentColorMenu' -Value '0xff008cff' -Force
+    Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Accent" -Name 'StartColorMenu' -Value '0xff0077e3' -Force
+    Stop-Process -ProcessName explorer -Force -ErrorAction SilentlyContinue
+    Write-Host "Colors set." -ForegroundColor "Cyan"
 } elseif ( $user_i -eq $user_2 ) {
     Write-Host "$user_2 Account detected." -ForegroundColor "Cyan"
     # Start-Process -Verb runas -FilePath "C:\Users\$user_2\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Windows PowerShell\Windows PowerShell.lnk" -ArgumentList "iwr -useb https://raw.githubusercontent.com/2ym/lge/main/lehrer.ps1 | iex"
