@@ -90,7 +90,7 @@ Set-ItemProperty -Path "HKCU:\Control Panel\Desktop" -Name WallPaper -Value $Loc
 
 RUNDLL32.EXE USER32.DLL, UpdatePerUserSystemParameters 1, True
 
-Write-Output "DESKTOP WP SET."
+Write-Output "DESKTOP WP SET.2"
 Write-Output $LockScreenImageValue
 
 
