@@ -255,34 +255,34 @@ Get-AppXProvisionedPackage -Online | Where DisplayName -like "MicrosoftCorporati
 Write-Host "Setting Custom Registry Keys..." -ForegroundColor "Cyan"
 
 # Registry Key Dark Mode System
-Set-ItemProperty "HKCU\Software\Microsoft\Windows\CurrentVersion\Themes\Personalize" "SystemUsesLightTheme" 0
+Set-ItemProperty "HKCU:\\Software\Microsoft\Windows\CurrentVersion\Themes\Personalize" "SystemUsesLightTheme" 0
 
 # Registry Key Dark Mode Apps
-Set-ItemProperty "HKCU\Software\Microsoft\Windows\CurrentVersion\Themes\Personalize" "AppsUseLightTheme" 0
+Set-ItemProperty "HKCU:\\Software\Microsoft\Windows\CurrentVersion\Themes\Personalize" "AppsUseLightTheme" 0
 
 # Registry Key Disable Bing Search
-Set-ItemProperty "HKCU\Software\Microsoft\Windows\CurrentVersion\Search" "BingSearchEnabled" 0
+Set-ItemProperty "HKCU:\\Software\Microsoft\Windows\CurrentVersion\Search" "BingSearchEnabled" 0
 
 # Registry Key Task Bar Hide Search
-Set-ItemProperty "HKCU\Software\Microsoft\Windows\CurrentVersion\Search" "SearchboxTaskbarMode" 0
+Set-ItemProperty "HKCU:\\Software\Microsoft\Windows\CurrentVersion\Search" "SearchboxTaskbarMode" 0
 
 # Registry Key Task Bar Hide Chat
-Set-ItemProperty "HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" "TaskbarMn" 0
+Set-ItemProperty "HKCU:\\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" "TaskbarMn" 0
 
 # Registry Key Task Bar Hide Task View
-Set-ItemProperty "HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" "ShowTaskViewButton" 0
+Set-ItemProperty "HKCU:\\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" "ShowTaskViewButton" 0
 
 # Registry Key Task Bar Hide Widgets
-Set-ItemProperty "HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" "TaskbarDa" 0
+Set-ItemProperty "HKCU:\\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" "TaskbarDa" 0
 
 # Registry Key Task Bar Left
-Set-ItemProperty "HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" "TaskbarAl" 0
+Set-ItemProperty "HKCU:\\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" "TaskbarAl" 0
 
 # Registry Key Explorer Show File Extensions
-Set-ItemProperty "HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" "HideFileExt" 0
+Set-ItemProperty "HKCU:\\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" "HideFileExt" 0
 
 # Registry Key Control Panel Icon Size
-Set-ItemProperty "HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\ControlPanel" "AllItemsIconView" 0
+Set-ItemProperty "HKCU:\\Software\Microsoft\Windows\CurrentVersion\Explorer\ControlPanel" "AllItemsIconView" 0
 
 # Registry Control Panel View
-Set-ItemProperty "HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\ControlPanel" "StartupPage" 1
+Set-ItemProperty "HKCU:\\Software\Microsoft\Windows\CurrentVersion\Explorer\ControlPanel" "StartupPage" 1
