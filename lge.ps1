@@ -70,17 +70,19 @@ if ( $user_i -eq $user_1 ) {
 } elseif ( $user_i -eq $user_2 ) {
     Write-Host "$user_2 Account detected." -ForegroundColor "Cyan"
     # Start-Process -Verb runas -FilePath "C:\Users\$user_2\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Windows PowerShell\Windows PowerShell.lnk" -ArgumentList "iwr -useb https://raw.githubusercontent.com/2ym/lge/main/lehrer.ps1 | iex"
-    Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Accent" -Name 'AccentColorMenu' -Value $user_2_ac -Force
-    Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Accent" -Name 'StartColorMenu' -Value $user_2_sm -Force
-    Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Accent" -Name 'AccentPalette' -Value ([byte[]]$user_2_ap_hexified) -Force
+    Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Accent" -Name 'AccentColorMenu' -Value $WindowsAccentColorMenu.Grasgruen -Force
+    Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Accent" -Name 'StartColorMenu' -Value $WindowsStartColorMenu.Grasgruen -Force
+    $hex = $WindowsAccentPalette.Grasgruen.Split(',') | ForEach-Object { "0x$_" }
+    Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Accent" -Name 'AccentPalette' -Value ([byte[]]$hex) -Force
     Stop-Process -ProcessName explorer -Force -ErrorAction SilentlyContinue
     Write-Host "Colors set." -ForegroundColor "Cyan"
 } elseif ( $user_i -eq $user_3 ) {
     Write-Host "$user_3 Account detected." -ForegroundColor "Cyan"
     # Start-Process -Verb runas -FilePath "C:\Users\$user_3\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Windows PowerShell\Windows PowerShell.lnk" -ArgumentList "iwr -useb https://raw.githubusercontent.com/2ym/lge/main/lehrer.ps1 | iex"
-    Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Accent" -Name 'AccentColorMenu' -Value $user_3_ac -Force
-    Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Accent" -Name 'StartColorMenu' -Value $user_3_sm -Force
-    Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Accent" -Name 'AccentPalette' -Value ([byte[]]$user_3_ap_hexified) -Force
+    Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Accent" -Name 'AccentColorMenu' -Value $WindowsAccentColorMenu.Hellorange -Force
+    Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Accent" -Name 'StartColorMenu' -Value $WindowsStartColorMenu.Hellorange -Force
+    $hex = $WindowsAccentPalette.Hellorange.Split(',') | ForEach-Object { "0x$_" }
+    Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Accent" -Name 'AccentPalette' -Value ([byte[]]$hex) -Force
     Stop-Process -ProcessName explorer -Force -ErrorAction SilentlyContinue
     Write-Host "Colors set." -ForegroundColor "Cyan"
 } else {
