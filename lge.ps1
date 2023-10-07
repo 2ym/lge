@@ -43,15 +43,16 @@ $WindowsStartColorMenu = @{
 function Set-WallpaperFromURL {
 
     param (
-        $URL
-        $Path
+        $url
+        $LockScreenImageValue
+	$directory
     )
 
     Write-Output $ComputerName
 
-}
 
-Test-MrParameter -ComputerName 'Moinsen'
+
+# Test-MrParameter -ComputerName 'Moinsen'
 
 $RegKeyPath = "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\PersonalizationCSP"
 
@@ -63,9 +64,9 @@ $LockScreenUrl = "LockScreenImageUrl"
 $StatusValue = "1"
 
 
-$url = "https://www.thelazyadministrator.com/wp-content/uploads/2019/07/nicewall.jpg"
-$LockScreenImageValue = "C:\MDM\wallpaper_LazyAdmin.jpg"
-$directory = "C:\MDM\"
+# $url = "https://www.thelazyadministrator.com/wp-content/uploads/2019/07/nicewall.jpg"
+# $LockScreenImageValue = "C:\MDM\wallpaper_LazyAdmin.jpg"
+# $directory = "C:\MDM\"
 
 
 If ((Test-Path -Path $directory) -eq $false)
@@ -90,6 +91,8 @@ New-ItemProperty -Path $RegKeyPath -Name $LockScreenPath -Value $LockScreenImage
 New-ItemProperty -Path $RegKeyPath -Name $LockScreenUrl -Value $LockScreenImageValue -PropertyType STRING -Force | Out-Null
 
 RUNDLL32.EXE USER32.DLL, UpdatePerUserSystemParameters 1, True
+
+}
 
 ###############################################################################
 ## Verify right Windows Build                                                ##
@@ -119,7 +122,8 @@ Write-Host "###########################" -ForegroundColor "Blue"
 Write-Host ""
 
 if ( $user_i -eq $user_1 ) {
-    Write-Host "$user_1 Account detected." -ForegroundColor "Cyan"
+    Write-Host "$user_1 Account detected." -ForegroundColor "Cyan
+    Set-WallpaperFromURL -url 'Moinsen' -LockScreenImageValue 'C:\LGE\WallpaperAdmin.jpg' -directory 'C:\LGE\'
     Start-Process -Verb runas -FilePath "C:\Users\$user_1\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Windows PowerShell\Windows PowerShell.lnk" -ArgumentList "iwr -useb https://raw.githubusercontent.com/2ym/lge/main/ac-test.ps1 | iex"
     Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Accent" -Name 'AccentColorMenu' -Value $WindowsAccentColorMenu.Ziegelrot -Force
     Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Accent" -Name 'StartColorMenu' -Value $WindowsStartColorMenu.Ziegelrot -Force
