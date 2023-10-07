@@ -123,8 +123,8 @@ Write-Host ""
 
 if ( $user_i -eq $user_1 ) {
     Write-Host "$user_1 Account detected." -ForegroundColor "Cyan
-    Set-WallpaperFromURL -url 'Moinsen' -LockScreenImageValue 'C:\LGE\WallpaperAdmin.jpg' -directory 'C:\LGE\'
-    Start-Process -Verb runas -FilePath "C:\Users\$user_1\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Windows PowerShell\Windows PowerShell.lnk" -ArgumentList "iwr -useb https://raw.githubusercontent.com/2ym/lge/main/ac-test.ps1 | iex"
+    Set-WallpaperFromURL -url 'https://raw.githubusercontent.com/2ym/lge/main/wallpaper-1.jpg' -LockScreenImageValue 'C:\LGE\WallpaperAdmin.jpg' -directory 'C:\LGE\'
+    # Start-Process -Verb runas -FilePath "C:\Users\$user_1\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Windows PowerShell\Windows PowerShell.lnk" -ArgumentList "iwr -useb https://raw.githubusercontent.com/2ym/lge/main/ac-test.ps1 | iex"
     Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Accent" -Name 'AccentColorMenu' -Value $WindowsAccentColorMenu.Ziegelrot -Force
     Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Accent" -Name 'StartColorMenu' -Value $WindowsStartColorMenu.Ziegelrot -Force
     $hex = $WindowsAccentPalette.Ziegelrot.Split(',') | ForEach-Object { "0x$_" }
