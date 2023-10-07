@@ -9,6 +9,7 @@ $user_3 = "Schueler"
 $user_1_ac = '0xff008cff'
 $user_1_ap = 'ff,d1,55,00,ff,b6,34,00,ff,99,10,00,ff,8c,00,00,e3,77,00,00,a1,46,00,00,65,19,00,00,00,63,b1,00'
 $user_1_sm = '0xff0077e3'
+$hexified = $user_1_ap.Split(',') | ForEach-Object { "0x$_" }
 
 if ( $build_i -eq $build_s ) {
     Write-Host "Windows Build $build_s detected." -ForegroundColor "Cyan"
@@ -38,6 +39,7 @@ if ( $user_i -eq $user_1 ) {
     # Set-Color($user_1_ac, $user_1_ap, $user_1_sm)
     Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Accent" -Name 'AccentColorMenu' -Value '0xff008cff' -Force
     Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Accent" -Name 'StartColorMenu' -Value '0xff0077e3' -Force
+    Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Accent" -Name 'AccentPalette' -Value ([byte[]]$hexified) -Force
     Stop-Process -ProcessName explorer -Force -ErrorAction SilentlyContinue
     Write-Host "Colors set." -ForegroundColor "Cyan"
 } elseif ( $user_i -eq $user_2 ) {
