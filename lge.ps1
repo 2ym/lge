@@ -7,6 +7,69 @@ $user_1 = "Admin"
 $user_2 = "Lehrer"
 $user_3 = "Schueler"
 
+
+
+Function Set-Color($AccentColorMenuKey.Value, $$AccentPaletteKey.Value, $StartMenuKey.Value) {
+  
+$RegPath = "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Accent"
+
+#Accent Color Menu Key
+$AccentColorMenuKey = @{
+	Key   = 'AccentColorMenu';
+	Type  = "DWORD";
+	Value = '0xff008cff'
+}
+
+If ($Null -eq (Get-ItemProperty -Path $RegPath -Name $AccentColorMenuKey.Key -ErrorAction SilentlyContinue))
+{
+	New-ItemProperty -Path $RegPath -Name $AccentColorMenuKey.Key -Value $AccentColorMenuKey.Value -PropertyType $AccentColorMenuKey.Type -Force
+}
+Else
+{
+	Set-ItemProperty -Path $RegPath -Name $AccentColorMenuKey.Key -Value $AccentColorMenuKey.Value -Force
+}
+
+
+#Accent Palette Key
+$AccentPaletteKey = @{
+	Key   = 'AccentPalette';
+	Type  = "BINARY";
+	Value = 'ff,d1,55,00,ff,b6,34,00,ff,99,10,00,ff,8c,00,00,e3,77,00,00,a1,46,00,00,65,19,00,00,00,63,b1,00'
+}
+$hexified = $AccentPaletteKey.Value.Split(',') | ForEach-Object { "0x$_" }
+
+If ($Null -eq (Get-ItemProperty -Path $RegPath -Name $AccentPaletteKey.Key -ErrorAction SilentlyContinue))
+{
+	New-ItemProperty -Path $RegPath -Name $AccentPaletteKey.Key -PropertyType Binary -Value ([byte[]]$hexified)
+}
+Else
+{
+	Set-ItemProperty -Path $RegPath -Name $AccentPaletteKey.Key -Value ([byte[]]$hexified) -Force
+}
+
+
+#Start Color Menu Key
+$StartMenuKey = @{
+	Key   = 'StartColorMenu';
+	Type  = "DWORD";
+	Value = '0xff0077e3'
+}
+
+If ($Null -eq (Get-ItemProperty -Path $RegPath -Name $StartMenuKey.Key -ErrorAction SilentlyContinue))
+{
+	New-ItemProperty -Path $RegPath -Name $StartMenuKey.Key -Value $StartMenuKey.Value -PropertyType $StartMenuKey.Type -Force
+}
+Else
+{
+	Set-ItemProperty -Path $RegPath -Name $StartMenuKey.Key -Value $StartMenuKey.Value -Force
+}
+
+Stop-Process -ProcessName explorer -Force -ErrorAction SilentlyContinue
+
+}
+
+
+
 if ( $build_i -eq $build_s ) {
     Write-Host "Windows Build $build_s detected." -ForegroundColor "Cyan"
 } else {
@@ -255,34 +318,34 @@ Get-AppXProvisionedPackage -Online | Where DisplayName -like "MicrosoftCorporati
 Write-Host "Setting Custom Registry Keys..." -ForegroundColor "Cyan"
 
 # Registry Key Dark Mode System
-Set-ItemProperty "HKCU:\\Software\Microsoft\Windows\CurrentVersion\Themes\Personalize" "SystemUsesLightTheme" 0
+Set-ItemProperty "HKCU:\Software\Microsoft\Windows\CurrentVersion\Themes\Personalize" "SystemUsesLightTheme" 0
 
 # Registry Key Dark Mode Apps
-Set-ItemProperty "HKCU:\\Software\Microsoft\Windows\CurrentVersion\Themes\Personalize" "AppsUseLightTheme" 0
+Set-ItemProperty "HKCU:\Software\Microsoft\Windows\CurrentVersion\Themes\Personalize" "AppsUseLightTheme" 0
 
 # Registry Key Disable Bing Search
-Set-ItemProperty "HKCU:\\Software\Microsoft\Windows\CurrentVersion\Search" "BingSearchEnabled" 0
+Set-ItemProperty "HKCU:\Software\Microsoft\Windows\CurrentVersion\Search" "BingSearchEnabled" 0
 
 # Registry Key Task Bar Hide Search
-Set-ItemProperty "HKCU:\\Software\Microsoft\Windows\CurrentVersion\Search" "SearchboxTaskbarMode" 0
+Set-ItemProperty "HKCU:\Software\Microsoft\Windows\CurrentVersion\Search" "SearchboxTaskbarMode" 0
 
 # Registry Key Task Bar Hide Chat
-Set-ItemProperty "HKCU:\\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" "TaskbarMn" 0
+Set-ItemProperty "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" "TaskbarMn" 0
 
 # Registry Key Task Bar Hide Task View
-Set-ItemProperty "HKCU:\\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" "ShowTaskViewButton" 0
+Set-ItemProperty "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" "ShowTaskViewButton" 0
 
 # Registry Key Task Bar Hide Widgets
-Set-ItemProperty "HKCU:\\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" "TaskbarDa" 0
+Set-ItemProperty "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" "TaskbarDa" 0
 
 # Registry Key Task Bar Left
-Set-ItemProperty "HKCU:\\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" "TaskbarAl" 0
+Set-ItemProperty "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" "TaskbarAl" 0
 
 # Registry Key Explorer Show File Extensions
-Set-ItemProperty "HKCU:\\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" "HideFileExt" 0
+Set-ItemProperty "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" "HideFileExt" 0
 
 # Registry Key Control Panel Icon Size
-Set-ItemProperty "HKCU:\\Software\Microsoft\Windows\CurrentVersion\Explorer\ControlPanel" "AllItemsIconView" 0
+Set-ItemProperty "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\ControlPanel" "AllItemsIconView" 0
 
 # Registry Control Panel View
-Set-ItemProperty "HKCU:\\Software\Microsoft\Windows\CurrentVersion\Explorer\ControlPanel" "StartupPage" 1
+Set-ItemProperty "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\ControlPanel" "StartupPage" 1
