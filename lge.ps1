@@ -6,10 +6,11 @@ $orga = "GCE Bayreuth"
 $user_1 = "Admin"
 $user_2 = "Lehrer"
 $user_3 = "Schueler"
+$user_1_ac = '0xff008cff'
+$user_1_ap = 'ff,d1,55,00,ff,b6,34,00,ff,99,10,00,ff,8c,00,00,e3,77,00,00,a1,46,00,00,65,19,00,00,00,63,b1,00'
+$user_1_sm = '0xff0077e3'
 
-
-
-Function Set-Color($AccentColorMenuKey.Value, $$AccentPaletteKey.Value, $StartMenuKey.Value) {
+Function Set-Color($ac, $ap, $sm) {
   
 $RegPath = "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Accent"
 
@@ -17,7 +18,7 @@ $RegPath = "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Accent"
 $AccentColorMenuKey = @{
 	Key   = 'AccentColorMenu';
 	Type  = "DWORD";
-	Value = '0xff008cff'
+	Value = $ac
 }
 
 If ($Null -eq (Get-ItemProperty -Path $RegPath -Name $AccentColorMenuKey.Key -ErrorAction SilentlyContinue))
@@ -34,7 +35,7 @@ Else
 $AccentPaletteKey = @{
 	Key   = 'AccentPalette';
 	Type  = "BINARY";
-	Value = 'ff,d1,55,00,ff,b6,34,00,ff,99,10,00,ff,8c,00,00,e3,77,00,00,a1,46,00,00,65,19,00,00,00,63,b1,00'
+	Value = $ap
 }
 $hexified = $AccentPaletteKey.Value.Split(',') | ForEach-Object { "0x$_" }
 
@@ -52,7 +53,7 @@ Else
 $StartMenuKey = @{
 	Key   = 'StartColorMenu';
 	Type  = "DWORD";
-	Value = '0xff0077e3'
+	Value = $sm
 }
 
 If ($Null -eq (Get-ItemProperty -Path $RegPath -Name $StartMenuKey.Key -ErrorAction SilentlyContinue))
@@ -94,7 +95,8 @@ Write-Host ""
 
 if ( $user_i -eq $user_1 ) {
     Write-Host "$user_1 Account detected." -ForegroundColor "Cyan"
-    Start-Process -Verb runas -FilePath "C:\Users\$user_1\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Windows PowerShell\Windows PowerShell.lnk" -ArgumentList "iwr -useb https://raw.githubusercontent.com/2ym/lge/main/ac-test.ps1 | iex"
+    # Start-Process -Verb runas -FilePath "C:\Users\$user_1\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Windows PowerShell\Windows PowerShell.lnk" -ArgumentList "iwr -useb https://raw.githubusercontent.com/2ym/lge/main/ac-test.ps1 | iex"
+    Set-Color($user_1_ac, $user_1_ap, $user_1_sm)
     break
 } elseif ( $user_i -eq $user_2 ) {
     Write-Host "$user_2 Account detected." -ForegroundColor "Cyan"
