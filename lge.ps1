@@ -86,7 +86,7 @@ if (!(Test-Path $RegKeyPath))
 New-ItemProperty -Path $RegKeyPath -Name $LockScreenStatus -Value $StatusValue -PropertyType DWORD -Force | Out-Null
 New-ItemProperty -Path $RegKeyPath -Name $LockScreenPath -Value $LockScreenImageValue -PropertyType STRING -Force | Out-Null
 New-ItemProperty -Path $RegKeyPath -Name $LockScreenUrl -Value $LockScreenImageValue -PropertyType STRING -Force | Out-Null
-Set-ItemProperty -Path "HKCU:\Control Panel\Desktop" -Name "WallPaper" -Value $LockScreenImageValue -PropertyType STRING -Force | Out-Null
+Set-ItemProperty -Path "HKCU:\Control Panel\Desktop" -Name "WallPaper" -Value $LockScreenImageValue -Force | Out-Null
 
 RUNDLL32.EXE USER32.DLL, UpdatePerUserSystemParameters 1, True
 
