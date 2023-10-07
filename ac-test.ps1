@@ -5,7 +5,7 @@ $RegPath = "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Accent"
 $AccentColorMenuKey = @{
 	Key   = 'AccentColorMenu';
 	Type  = "DWORD";
-	Value = '0xff4e3f30'
+	Value = '0xff008cff'
 }
 
 If ($Null -eq (Get-ItemProperty -Path $RegPath -Name $AccentColorMenuKey.Key -ErrorAction SilentlyContinue))
@@ -22,7 +22,7 @@ Else
 $AccentPaletteKey = @{
 	Key   = 'AccentPalette';
 	Type  = "BINARY";
-	Value = '51,6b,84,ff,43,59,6e,ff,3a,4c,5e,ff,30,3f,4e,ff,26,33,3f,ff,1d,26,2f,ff,0f,14,19,ff,88,17,98,00'
+	Value = 'ff,d1,55,00,ff,b6,34,00,ff,99,10,00,ff,8c,00,00,e3,77,00,00,a1,46,00,00,65,19,00,00,00,63,b1,00'
 }
 $hexified = $AccentPaletteKey.Value.Split(',') | ForEach-Object { "0x$_" }
 
@@ -36,29 +36,11 @@ Else
 }
 
 
-#MotionAccentId_v1.00 Key
-$MotionAccentIdKey = @{
-	Key   = 'MotionAccentId_v1.00';
-	Type  = "DWORD";
-	Value = '0x000000db'
-}
-
-If ($Null -eq (Get-ItemProperty -Path $RegPath -Name $MotionAccentIdKey.Key -ErrorAction SilentlyContinue))
-{
-	New-ItemProperty -Path $RegPath -Name $MotionAccentIdKey.Key -Value $MotionAccentIdKey.Value -PropertyType $MotionAccentIdKey.Type -Force
-}
-Else
-{
-	Set-ItemProperty -Path $RegPath -Name $MotionAccentIdKey.Key -Value $MotionAccentIdKey.Value -Force
-}
-
-
-
 #Start Color Menu Key
 $StartMenuKey = @{
 	Key   = 'StartColorMenu';
 	Type  = "DWORD";
-	Value = '0xff3f3326'
+	Value = '0xff0077e3'
 }
 
 If ($Null -eq (Get-ItemProperty -Path $RegPath -Name $StartMenuKey.Key -ErrorAction SilentlyContinue))
