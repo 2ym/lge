@@ -3,13 +3,26 @@ $build_s = 22621
 $build_i = [System.Environment]::OSVersion.Version.Build
 $user_i = [System.Environment]::UserName
 $orga = "GCE Bayreuth"
+
 $user_1 = "Admin"
 $user_2 = "Lehrer"
 $user_3 = "Schueler"
+
 $user_1_ac = '0xff008cff'
-$user_1_ap = 'ff,d1,55,00,ff,b6,34,00,ff,99,10,00,ff,8c,00,00,e3,77,00,00,a1,46,00,00,65,19,00,00,00,63,b1,00'
 $user_1_sm = '0xff0077e3'
-$hexified = $user_1_ap.Split(',') | ForEach-Object { "0x$_" }
+$user_1_ap = 'ff,d1,55,00,ff,b6,34,00,ff,99,10,00,ff,8c,00,00,e3,77,00,00,a1,46,00,00,65,19,00,00,00,63,b1,00'
+$user_1_ap_hexified = $user_1_ap.Split(',') | ForEach-Object { "0x$_" }
+
+$user_2_ac = '0xff008cff'
+$user_2_sm = '0xff0077e3'
+$user_2_ap = 'ff,d1,55,00,ff,b6,34,00,ff,99,10,00,ff,8c,00,00,e3,77,00,00,a1,46,00,00,65,19,00,00,00,63,b1,00'
+$user_2_ap_hexified = $user_1_ap.Split(',') | ForEach-Object { "0x$_" }
+
+$user_3_ac = '0xff008cff'
+$user_3_sm = '0xff0077e3'
+$user_3_ap = 'ff,d1,55,00,ff,b6,34,00,ff,99,10,00,ff,8c,00,00,e3,77,00,00,a1,46,00,00,65,19,00,00,00,63,b1,00'
+$user_3_ap_hexified = $user_1_ap.Split(',') | ForEach-Object { "0x$_" }
+
 
 if ( $build_i -eq $build_s ) {
     Write-Host "Windows Build $build_s detected." -ForegroundColor "Cyan"
@@ -36,18 +49,27 @@ Write-Host ""
 if ( $user_i -eq $user_1 ) {
     Write-Host "$user_1 Account detected." -ForegroundColor "Cyan"
     # Start-Process -Verb runas -FilePath "C:\Users\$user_1\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Windows PowerShell\Windows PowerShell.lnk" -ArgumentList "iwr -useb https://raw.githubusercontent.com/2ym/lge/main/ac-test.ps1 | iex"
-    # Set-Color($user_1_ac, $user_1_ap, $user_1_sm)
-    Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Accent" -Name 'AccentColorMenu' -Value '0xff008cff' -Force
-    Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Accent" -Name 'StartColorMenu' -Value '0xff0077e3' -Force
-    Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Accent" -Name 'AccentPalette' -Value ([byte[]]$hexified) -Force
+    Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Accent" -Name 'AccentColorMenu' -Value $user_1_ac -Force
+    Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Accent" -Name 'StartColorMenu' -Value $user_1_sm -Force
+    Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Accent" -Name 'AccentPalette' -Value ([byte[]]$user_1_ap_hexified) -Force
     Stop-Process -ProcessName explorer -Force -ErrorAction SilentlyContinue
     Write-Host "Colors set." -ForegroundColor "Cyan"
 } elseif ( $user_i -eq $user_2 ) {
     Write-Host "$user_2 Account detected." -ForegroundColor "Cyan"
     # Start-Process -Verb runas -FilePath "C:\Users\$user_2\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Windows PowerShell\Windows PowerShell.lnk" -ArgumentList "iwr -useb https://raw.githubusercontent.com/2ym/lge/main/lehrer.ps1 | iex"
+    Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Accent" -Name 'AccentColorMenu' -Value $user_2_ac -Force
+    Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Accent" -Name 'StartColorMenu' -Value $user_2_sm -Force
+    Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Accent" -Name 'AccentPalette' -Value ([byte[]]$user_2_ap_hexified) -Force
+    Stop-Process -ProcessName explorer -Force -ErrorAction SilentlyContinue
+    Write-Host "Colors set." -ForegroundColor "Cyan"
 } elseif ( $user_i -eq $user_3 ) {
     Write-Host "$user_3 Account detected." -ForegroundColor "Cyan"
     # Start-Process -Verb runas -FilePath "C:\Users\$user_3\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Windows PowerShell\Windows PowerShell.lnk" -ArgumentList "iwr -useb https://raw.githubusercontent.com/2ym/lge/main/lehrer.ps1 | iex"
+    Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Accent" -Name 'AccentColorMenu' -Value $user_3_ac -Force
+    Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Accent" -Name 'StartColorMenu' -Value $user_3_sm -Force
+    Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Accent" -Name 'AccentPalette' -Value ([byte[]]$user_3_ap_hexified) -Force
+    Stop-Process -ProcessName explorer -Force -ErrorAction SilentlyContinue
+    Write-Host "Colors set." -ForegroundColor "Cyan"
 } else {
     Write-Host "No valid Account Name detected." -ForegroundColor "Red"
     break
