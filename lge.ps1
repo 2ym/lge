@@ -9,30 +9,30 @@ $user_2 = "Lehrer"
 $user_3 = "Schueler"
 
 $WindowsAccentColorMenu = @{
-  Gelbgold = '0xff00b9ff'
-  Gold = '0xff008cff'
-  Hellorange = '0xff0c63f7'
-  Ziegelrot = '0xff3834d1'
-  Rot = '0xff2311e8'
-  Grasgruen = '0xff6acc00'
+    Gelbgold   = '0xff00b9ff'
+    Gold       = '0xff008cff'
+    Hellorange = '0xff0c63f7'
+    Ziegelrot  = '0xff3834d1'
+    Rot        = '0xff2311e8'
+    Grasgruen  = '0xff6acc00'
 }
 
 $WindowsAccentPalette = @{
-  Gelbgold = 'fb,b4,b7,00,f3,8a,91,00,eb,5c,68,00,e7,48,56,00,e3,29,38,00,a6,16,1e,00,65,0d,0f,00,ff,8c,00,00'
-  Gold = 'ff,d1,55,00,ff,b6,34,00,ff,99,10,00,ff,8c,00,00,e3,77,00,00,a1,46,00,00,65,19,00,00,00,63,b1,00'
-  Hellorange = 'fe,bd,68,00,fb,9a,44,00,f8,74,1d,00,f7,63,0c,00,e0,53,07,00,a1,31,05,00,69,12,02,00,00,99,bc,00'
-  Ziegelrot = 'f7,b1,a5,00,e8,80,7a,00,d8,4b,4c,00,d1,34,38,00,be,2b,2e,00,8d,1a,1c,00,61,09,0a,00,64,7c,64,00'
-  Rot = 'fb,9d,8b,00,f4,67,62,00,ef,27,33,00,e8,11,23,00,d2,0e,1e,00,9e,09,12,00,6f,03,06,00,69,79,7e,00'
-  Grasgruen = '5f,ff,a5,00,26,ff,8e,00,00,e7,75,00,00,cc,6a,00,00,b2,5a,00,00,76,35,00,00,3f,13,00,e3,00,8c,00'
+    Gelbgold   = 'fb,b4,b7,00,f3,8a,91,00,eb,5c,68,00,e7,48,56,00,e3,29,38,00,a6,16,1e,00,65,0d,0f,00,ff,8c,00,00'
+    Gold       = 'ff,d1,55,00,ff,b6,34,00,ff,99,10,00,ff,8c,00,00,e3,77,00,00,a1,46,00,00,65,19,00,00,00,63,b1,00'
+    Hellorange = 'fe,bd,68,00,fb,9a,44,00,f8,74,1d,00,f7,63,0c,00,e0,53,07,00,a1,31,05,00,69,12,02,00,00,99,bc,00'
+    Ziegelrot  = 'f7,b1,a5,00,e8,80,7a,00,d8,4b,4c,00,d1,34,38,00,be,2b,2e,00,8d,1a,1c,00,61,09,0a,00,64,7c,64,00'
+    Rot        = 'fb,9d,8b,00,f4,67,62,00,ef,27,33,00,e8,11,23,00,d2,0e,1e,00,9e,09,12,00,6f,03,06,00,69,79,7e,00'
+    Grasgruen  = '5f,ff,a5,00,26,ff,8e,00,00,e7,75,00,00,cc,6a,00,00,b2,5a,00,00,76,35,00,00,3f,13,00,e3,00,8c,00'
 }
 
 $WindowsStartColorMenu = @{
-  Gelbgold = '0xff009de1'
-  Gold = '0xff0077e3'
-  Hellorange = '0xff0753e0'
-  Ziegelrot = '0xff2e2bbe'
-  Rot = '0xff1e0ed2'
-  Grasgruen = '0xff5ab200'
+    Gelbgold   = '0xff009de1'
+    Gold       = '0xff0077e3'
+    Hellorange = '0xff0753e0'
+    Ziegelrot  = '0xff2e2bbe'
+    Rot        = '0xff1e0ed2'
+    Grasgruen  = '0xff5ab200'
 }
 
 ###############################################################################
@@ -44,54 +44,52 @@ function Set-WallpaperFromURL {
     param (
         $url,
         $LockScreenImageValue,
-	$directory
+        $directory
     )
 
 
 
-# Test-MrParameter -ComputerName 'Moinsen'
+    # Test-MrParameter -ComputerName 'Moinsen'
 
-$RegKeyPath = "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\PersonalizationCSP"
-
-
-$LockScreenPath = "LockScreenImagePath"
-$LockScreenStatus = "LockScreenImageStatus"
-$LockScreenUrl = "LockScreenImageUrl"
-
-$StatusValue = "1"
+    $RegKeyPath = "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\PersonalizationCSP"
 
 
-# $url = "https://www.thelazyadministrator.com/wp-content/uploads/2019/07/nicewall.jpg"
-# $LockScreenImageValue = "C:\MDM\wallpaper_LazyAdmin.jpg"
-# $directory = "C:\MDM\"
+    $LockScreenPath = "LockScreenImagePath"
+    $LockScreenStatus = "LockScreenImageStatus"
+    $LockScreenUrl = "LockScreenImageUrl"
+
+    $StatusValue = "1"
 
 
-If ((Test-Path -Path $directory) -eq $false)
-{
-	New-Item -Path $directory -ItemType directory
-}
-
-$wc = New-Object System.Net.WebClient
-$wc.DownloadFile($url, $LockScreenImageValue)
+    # $url = "https://www.thelazyadministrator.com/wp-content/uploads/2019/07/nicewall.jpg"
+    # $LockScreenImageValue = "C:\MDM\wallpaper_LazyAdmin.jpg"
+    # $directory = "C:\MDM\"
 
 
+    If ((Test-Path -Path $directory) -eq $false) {
+        New-Item -Path $directory -ItemType directory
+    }
 
-if (!(Test-Path $RegKeyPath))
-{
-	Write-Host "Creating registry path $($RegKeyPath)."
-	New-Item -Path $RegKeyPath -Force | Out-Null
-}
+    $wc = New-Object System.Net.WebClient
+    $wc.DownloadFile($url, $LockScreenImageValue)
 
 
-New-ItemProperty -Path $RegKeyPath -Name $LockScreenStatus -Value $StatusValue -PropertyType DWORD -Force | Out-Null
-New-ItemProperty -Path $RegKeyPath -Name $LockScreenPath -Value $LockScreenImageValue -PropertyType STRING -Force | Out-Null
-New-ItemProperty -Path $RegKeyPath -Name $LockScreenUrl -Value $LockScreenImageValue -PropertyType STRING -Force | Out-Null
-Set-ItemProperty -Path "HKCU:\Control Panel\Desktop" -Name "WallPaper" -Value $LockScreenImageValue -Force | Out-Null
 
-RUNDLL32.EXE USER32.DLL, UpdatePerUserSystemParameters 1, True
+    if (!(Test-Path $RegKeyPath)) {
+        Write-Host "Creating registry path $($RegKeyPath)."
+        New-Item -Path $RegKeyPath -Force | Out-Null
+    }
 
-Write-Output "DESKTOP WP SET.2"
-Write-Output $LockScreenImageValue
+
+    New-ItemProperty -Path $RegKeyPath -Name $LockScreenStatus -Value $StatusValue -PropertyType DWORD -Force | Out-Null
+    New-ItemProperty -Path $RegKeyPath -Name $LockScreenPath -Value $LockScreenImageValue -PropertyType STRING -Force | Out-Null
+    New-ItemProperty -Path $RegKeyPath -Name $LockScreenUrl -Value $LockScreenImageValue -PropertyType STRING -Force | Out-Null
+    Set-ItemProperty -Path "HKCU:\Control Panel\Desktop" -Name "WallPaper" -Value $LockScreenImageValue -Force | Out-Null
+
+    RUNDLL32.EXE USER32.DLL, UpdatePerUserSystemParameters 1, True
+
+    Write-Output "DESKTOP WP SET.2"
+    Write-Output $LockScreenImageValue
 
 
 }
@@ -167,111 +165,111 @@ Write-Host "Removing Default Windows Applications..." -ForegroundColor "Cyan"
 
 # Uninstall 3D Builder
 Get-AppxPackage "Microsoft.3DBuilder" -AllUsers | Remove-AppxPackage -AllUsers
-Get-AppXProvisionedPackage -Online | Where DisplayName -like "Microsoft.3DBuilder" | Remove-AppxProvisionedPackage -Online -AllUsers
+Get-AppXProvisionedPackage -Online | Where-Object DisplayName -like "Microsoft.3DBuilder" | Remove-AppxProvisionedPackage -Online -AllUsers
 
 # Uninstall Adobe Creative Cloud Express
 Get-AppxPackage "AdobeSystemsIncorporated.AdobeCreativeCloudExpress" -AllUsers | Remove-AppxPackage -AllUsers
-Get-AppXProvisionedPackage -Online | Where DisplayName -like "AdobeSystemsIncorporated.AdobeCreativeCloudExpress" | Remove-AppxProvisionedPackage -Online -AllUsers
+Get-AppXProvisionedPackage -Online | Where-Object DisplayName -like "AdobeSystemsIncorporated.AdobeCreativeCloudExpress" | Remove-AppxProvisionedPackage -Online -AllUsers
 
 # Uninstall Alarms and Clock
 Get-AppxPackage "Microsoft.WindowsAlarms" -AllUsers | Remove-AppxPackage -AllUsers
-Get-AppXProvisionedPackage -Online | Where DisplayName -like "Microsoft.WindowsAlarms" | Remove-AppxProvisionedPackage -Online -AllUsers
+Get-AppXProvisionedPackage -Online | Where-Object DisplayName -like "Microsoft.WindowsAlarms" | Remove-AppxProvisionedPackage -Online -AllUsers
 
 # Uninstall Amazon Prime Video
 Get-AppxPackage "AmazonVideo.PrimeVideo" -AllUsers | Remove-AppxPackage -AllUsers
-Get-AppXProvisionedPackage -Online | Where DisplayName -like "AmazonVideo.PrimeVideo" | Remove-AppxProvisionedPackage -Online -AllUsers
+Get-AppXProvisionedPackage -Online | Where-Object DisplayName -like "AmazonVideo.PrimeVideo" | Remove-AppxProvisionedPackage -Online -AllUsers
 
 # Uninstall Autodesk Sketchbook
 Get-AppxPackage "*.AutodeskSketchBook" -AllUsers | Remove-AppxPackage -AllUsers
-Get-AppXProvisionedPackage -Online | Where DisplayName -like "*.AutodeskSketchBook" | Remove-AppxProvisionedPackage -Online -AllUsers
+Get-AppXProvisionedPackage -Online | Where-Object DisplayName -like "*.AutodeskSketchBook" | Remove-AppxProvisionedPackage -Online -AllUsers
 
 # Uninstall Bing Finance
 Get-AppxPackage "Microsoft.BingFinance" -AllUsers | Remove-AppxPackage -AllUsers
-Get-AppXProvisionedPackage -Online | Where DisplayName -like "Microsoft.BingFinance" | Remove-AppxProvisionedPackage -Online -AllUsers
+Get-AppXProvisionedPackage -Online | Where-Object DisplayName -like "Microsoft.BingFinance" | Remove-AppxProvisionedPackage -Online -AllUsers
 
 # Uninstall Bing News
 Get-AppxPackage "Microsoft.BingNews" -AllUsers | Remove-AppxPackage -AllUsers
-Get-AppXProvisionedPackage -Online | Where DisplayName -like "Microsoft.BingNews" | Remove-AppxProvisionedPackage -Online -AllUsers
+Get-AppXProvisionedPackage -Online | Where-Object DisplayName -like "Microsoft.BingNews" | Remove-AppxProvisionedPackage -Online -AllUsers
 
 # Uninstall Bing Sports
 Get-AppxPackage "Microsoft.BingSports" -AllUsers | Remove-AppxPackage -AllUsers
-Get-AppXProvisionedPackage -Online | Where DisplayName -like "Microsoft.BingSports" | Remove-AppxProvisionedPackage -Online -AllUsers
+Get-AppXProvisionedPackage -Online | Where-Object DisplayName -like "Microsoft.BingSports" | Remove-AppxProvisionedPackage -Online -AllUsers
 
 # Uninstall Bing Weather
 Get-AppxPackage "Microsoft.BingWeather" -AllUsers | Remove-AppxPackage -AllUsers
-Get-AppXProvisionedPackage -Online | Where DisplayName -like "Microsoft.BingWeather" | Remove-AppxProvisionedPackage -Online -AllUsers
+Get-AppXProvisionedPackage -Online | Where-Object DisplayName -like "Microsoft.BingWeather" | Remove-AppxProvisionedPackage -Online -AllUsers
 
 # Uninstall Bubble Witch 3 Saga
 Get-AppxPackage "king.com.BubbleWitch3Saga" -AllUsers | Remove-AppxPackage -AllUsers
-Get-AppXProvisionedPackage -Online | Where DisplayName -like "king.com.BubbleWitch3Saga" | Remove-AppxProvisionedPackage -Online -AllUsers
+Get-AppXProvisionedPackage -Online | Where-Object DisplayName -like "king.com.BubbleWitch3Saga" | Remove-AppxProvisionedPackage -Online -AllUsers
 
 # Uninstall Calendar and Mail
 Get-AppxPackage "Microsoft.WindowsCommunicationsApps" -AllUsers | Remove-AppxPackage -AllUsers
-Get-AppXProvisionedPackage -Online | Where DisplayName -like "Microsoft.WindowsCommunicationsApps" | Remove-AppxProvisionedPackage -Online -AllUsers
+Get-AppXProvisionedPackage -Online | Where-Object DisplayName -like "Microsoft.WindowsCommunicationsApps" | Remove-AppxProvisionedPackage -Online -AllUsers
 
 # Uninstall Candy Crush Soda Saga
 Get-AppxPackage "king.com.CandyCrushSodaSaga" -AllUsers | Remove-AppxPackage -AllUsers
-Get-AppXProvisionedPackage -Online | Where DisplayName -like "king.com.CandyCrushSodaSaga" | Remove-AppxProvisionedPackage -Online -AllUsers
+Get-AppXProvisionedPackage -Online | Where-Object DisplayName -like "king.com.CandyCrushSodaSaga" | Remove-AppxProvisionedPackage -Online -AllUsers
 
 # Uninstall ClipChamp Video Editor
 Get-AppxPackage "Clipchamp.Clipchamp" -AllUsers | Remove-AppxPackage
-Get-AppXProvisionedPackage -Online | Where DisplayName -like "Clipchamp.Clipchamp" | Remove-AppxProvisionedPackage -Online
+Get-AppXProvisionedPackage -Online | Where-Object DisplayName -like "Clipchamp.Clipchamp" | Remove-AppxProvisionedPackage -Online
 
 # Uninstall Cortana
 Get-AppxPackage "Microsoft.549981C3F5F10" -AllUsers | Remove-AppxPackage -AllUsers
-Get-AppXProvisionedPackage -Online | Where DisplayName -like "Microsoft.549981C3F5F10" | Remove-AppxProvisionedPackage -Online -AllUsers
+Get-AppXProvisionedPackage -Online | Where-Object DisplayName -like "Microsoft.549981C3F5F10" | Remove-AppxProvisionedPackage -Online -AllUsers
 
 # Uninstall Disney+
 Get-AppxPackage "Disney.37853FC22B2CE" -AllUsers | Remove-AppxPackage -AllUsers
-Get-AppXProvisionedPackage -Online | Where DisplayName -like "Disney.37853FC22B2CE" | Remove-AppxProvisionedPackage -Online -AllUsers
+Get-AppXProvisionedPackage -Online | Where-Object DisplayName -like "Disney.37853FC22B2CE" | Remove-AppxProvisionedPackage -Online -AllUsers
 
 # Uninstall Disney Magic Kingdoms
 Get-AppxPackage "*.DisneyMagicKingdoms" -AllUsers | Remove-AppxPackage -AllUsers
-Get-AppXProvisionedPackage -Online | Where DisplayName -like "*.DisneyMagicKingdoms" | Remove-AppxProvisionedPackage -Online -AllUsers
+Get-AppXProvisionedPackage -Online | Where-Object DisplayName -like "*.DisneyMagicKingdoms" | Remove-AppxProvisionedPackage -Online -AllUsers
 
 # Uninstall Dolby
 Get-AppxPackage "DolbyLaboratories.DolbyAccess" -AllUsers | Remove-AppxPackage -AllUsers
-Get-AppXProvisionedPackage -Online | Where DisplayName -like "DolbyLaboratories.DolbyAccess" | Remove-AppxProvisionedPackage -Online -AllUsers
+Get-AppXProvisionedPackage -Online | Where-Object DisplayName -like "DolbyLaboratories.DolbyAccess" | Remove-AppxProvisionedPackage -Online -AllUsers
 
 # Uninstall Facebook
 Get-AppxPackage "Facebook.Facebook*" -AllUsers | Remove-AppxPackage -AllUsers
-Get-AppXProvisionedPackage -Online | Where DisplayName -like "Facebook.Facebook*" | Remove-AppxProvisionedPackage -Online -AllUsers
+Get-AppXProvisionedPackage -Online | Where-Object DisplayName -like "Facebook.Facebook*" | Remove-AppxProvisionedPackage -Online -AllUsers
 
 # Uninstall Get Office, and it's "Get Office365" notifications
 Get-AppxPackage "Microsoft.MicrosoftOfficeHub" -AllUsers | Remove-AppxPackage -AllUsers
-Get-AppXProvisionedPackage -Online | Where DisplayName -like "Microsoft.MicrosoftOfficeHub" | Remove-AppxProvisionedPackage -Online -AllUsers
+Get-AppXProvisionedPackage -Online | Where-Object DisplayName -like "Microsoft.MicrosoftOfficeHub" | Remove-AppxProvisionedPackage -Online -AllUsers
 
 # Uninstall Instagram
 Get-AppxPackage "Facebook.Instagram*" -AllUsers | Remove-AppxPackage -AllUsers
-Get-AppXProvisionedPackage -Online | Where DisplayName -like "Facebook.Instagram*" | Remove-AppxProvisionedPackage -Online -AllUsers
+Get-AppXProvisionedPackage -Online | Where-Object DisplayName -like "Facebook.Instagram*" | Remove-AppxProvisionedPackage -Online -AllUsers
 
 # Uninstall Maps
 Get-AppxPackage "Microsoft.WindowsMaps" -AllUsers | Remove-AppxPackage -AllUsers
-Get-AppXProvisionedPackage -Online | Where DisplayName -like "Microsoft.WindowsMaps" | Remove-AppxProvisionedPackage -Online -AllUsers
+Get-AppXProvisionedPackage -Online | Where-Object DisplayName -like "Microsoft.WindowsMaps" | Remove-AppxProvisionedPackage -Online -AllUsers
 
 # Uninstall March of Empires
 Get-AppxPackage "*.MarchofEmpires" -AllUsers | Remove-AppxPackage -AllUsers
-Get-AppXProvisionedPackage -Online | Where DisplayName -like "*.MarchofEmpires" | Remove-AppxProvisionedPackage -Online -AllUsers
+Get-AppXProvisionedPackage -Online | Where-Object DisplayName -like "*.MarchofEmpires" | Remove-AppxProvisionedPackage -Online -AllUsers
 
 # Uninstall Messaging
 Get-AppxPackage "Microsoft.Messaging" -AllUsers | Remove-AppxPackage -AllUsers
-Get-AppXProvisionedPackage -Online | Where DisplayName -like "Microsoft.Messaging" | Remove-AppxProvisionedPackage -Online -AllUsers
+Get-AppXProvisionedPackage -Online | Where-Object DisplayName -like "Microsoft.Messaging" | Remove-AppxProvisionedPackage -Online -AllUsers
 
 # Uninstall Mobile Plans
 Get-AppxPackage "Microsoft.OneConnect" -AllUsers | Remove-AppxPackage -AllUsers
-Get-AppXProvisionedPackage -Online | Where DisplayName -like "Microsoft.OneConnect" | Remove-AppxProvisionedPackage -Online -AllUsers
+Get-AppXProvisionedPackage -Online | Where-Object DisplayName -like "Microsoft.OneConnect" | Remove-AppxProvisionedPackage -Online -AllUsers
 
 # Uninstall OneNote
 Get-AppxPackage "Microsoft.Office.OneNote" -AllUsers | Remove-AppxPackage -AllUsers
-Get-AppXProvisionedPackage -Online | Where DisplayName -like "Microsoft.Office.OneNote" | Remove-AppxProvisionedPackage -Online -AllUsers
+Get-AppXProvisionedPackage -Online | Where-Object DisplayName -like "Microsoft.Office.OneNote" | Remove-AppxProvisionedPackage -Online -AllUsers
 
 # Uninstall Paint
 Get-AppxPackage "Microsoft.Paint" -AllUsers | Remove-AppxPackage -AllUsers
-Get-AppXProvisionedPackage -Online | Where DisplayName -like "Microsoft.Paint" | Remove-AppxProvisionedPackage -Online -AllUsers
+Get-AppXProvisionedPackage -Online | Where-Object DisplayName -like "Microsoft.Paint" | Remove-AppxProvisionedPackage -Online -AllUsers
 
 # Uninstall People
 Get-AppxPackage "Microsoft.People" -AllUsers | Remove-AppxPackage -AllUsers
-Get-AppXProvisionedPackage -Online | Where DisplayName -like "Microsoft.People" | Remove-AppxProvisionedPackage -Online -AllUsers
+Get-AppXProvisionedPackage -Online | Where-Object DisplayName -like "Microsoft.People" | Remove-AppxProvisionedPackage -Online -AllUsers
 
 # Uninstall Photos
 # Get-AppxPackage "Microsoft.Windows.Photos" -AllUsers | Remove-AppxPackage -AllUsers
@@ -279,84 +277,84 @@ Get-AppXProvisionedPackage -Online | Where DisplayName -like "Microsoft.People" 
 
 # Uninstall Print3D
 Get-AppxPackage "Microsoft.Print3D" -AllUsers | Remove-AppxPackage -AllUsers
-Get-AppXProvisionedPackage -Online | Where DisplayName -like "Microsoft.Print3D" | Remove-AppxProvisionedPackage -Online -AllUsers
+Get-AppXProvisionedPackage -Online | Where-Object DisplayName -like "Microsoft.Print3D" | Remove-AppxProvisionedPackage -Online -AllUsers
 
 # Uninstall Skype
 Get-AppxPackage "Microsoft.SkypeApp" -AllUsers | Remove-AppxPackage -AllUsers
-Get-AppXProvisionedPackage -Online | Where DisplayName -like "Microsoft.SkypeApp" | Remove-AppxProvisionedPackage -Online -AllUsers
+Get-AppXProvisionedPackage -Online | Where-Object DisplayName -like "Microsoft.SkypeApp" | Remove-AppxProvisionedPackage -Online -AllUsers
 
 # Uninstall SlingTV
 Get-AppxPackage "*.SlingTV" -AllUsers | Remove-AppxPackage -AllUsers
-Get-AppXProvisionedPackage -Online | Where DisplayName -like "*.SlingTV" | Remove-AppxProvisionedPackage -Online -AllUsers
+Get-AppXProvisionedPackage -Online | Where-Object DisplayName -like "*.SlingTV" | Remove-AppxProvisionedPackage -Online -AllUsers
 
 # Uninstall Solitaire
 Get-AppxPackage "Microsoft.MicrosoftSolitaireCollection" -AllUsers | Remove-AppxPackage -AllUsers
-Get-AppXProvisionedPackage -Online | Where DisplayName -like "Microsoft.MicrosoftSolitaireCollection" | Remove-AppxProvisionedPackage -Online -AllUsers
+Get-AppXProvisionedPackage -Online | Where-Object DisplayName -like "Microsoft.MicrosoftSolitaireCollection" | Remove-AppxProvisionedPackage -Online -AllUsers
 
 # Uninstall Spotify
 Get-AppxPackage "SpotifyAB.SpotifyMusic" -AllUsers | Remove-AppxPackage -AllUsers
-Get-AppXProvisionedPackage -Online | Where DisplayName -like "SpotifyAB.SpotifyMusic" | Remove-AppxProvisionedPackage -Online -AllUsers
+Get-AppXProvisionedPackage -Online | Where-Object DisplayName -like "SpotifyAB.SpotifyMusic" | Remove-AppxProvisionedPackage -Online -AllUsers
 
 # Uninstall StickyNotes
 Get-AppxPackage "Microsoft.MicrosoftStickyNotes" -AllUsers | Remove-AppxPackage -AllUsers
-Get-AppXProvisionedPackage -Online | Where DisplayName -like "Microsoft.MicrosoftStickyNotes" | Remove-AppxProvisionedPackage -Online -AllUsers
+Get-AppXProvisionedPackage -Online | Where-Object DisplayName -like "Microsoft.MicrosoftStickyNotes" | Remove-AppxProvisionedPackage -Online -AllUsers
 
 # Uninstall Sway
 Get-AppxPackage "Microsoft.Office.Sway" -AllUsers | Remove-AppxPackage -AllUsers
-Get-AppXProvisionedPackage -Online | Where DisplayName -like "Microsoft.Office.Sway" | Remove-AppxProvisionedPackage -Online -AllUsers
+Get-AppXProvisionedPackage -Online | Where-Object DisplayName -like "Microsoft.Office.Sway" | Remove-AppxProvisionedPackage -Online -AllUsers
 
 # Uninstall TikTok
 Get-AppxPackage "*.TikTok" -AllUsers | Remove-AppxPackage -AllUsers
-Get-AppXProvisionedPackage -Online | Where DisplayName -like "*.TikTok" | Remove-AppxProvisionedPackage -Online -AllUsers
+Get-AppXProvisionedPackage -Online | Where-Object DisplayName -like "*.TikTok" | Remove-AppxProvisionedPackage -Online -AllUsers
 
 # Uninstall Microsoft ToDos
 Get-AppxPackage "Microsoft.ToDos" -AllUsers | Remove-AppxPackage -AllUsers
-Get-AppXProvisionedPackage -Online | Where DisplayName -like "Microsoft.ToDos" | Remove-AppxProvisionedPackage -Online -AllUsers
+Get-AppXProvisionedPackage -Online | Where-Object DisplayName -like "Microsoft.ToDos" | Remove-AppxProvisionedPackage -Online -AllUsers
 
 # Uninstall Twitter
 Get-AppxPackage "*.Twitter" -AllUsers | Remove-AppxPackage -AllUsers
-Get-AppXProvisionedPackage -Online | Where DisplayName -like "*.Twitter" | Remove-AppxProvisionedPackage -Online -AllUsers
+Get-AppXProvisionedPackage -Online | Where-Object DisplayName -like "*.Twitter" | Remove-AppxProvisionedPackage -Online -AllUsers
 
 # Uninstall Voice Recorder
 Get-AppxPackage "Microsoft.WindowsSoundRecorder" -AllUsers | Remove-AppxPackage -AllUsers
-Get-AppXProvisionedPackage -Online | Where DisplayName -like "Microsoft.WindowsSoundRecorder" | Remove-AppxProvisionedPackage -Online -AllUsers
+Get-AppXProvisionedPackage -Online | Where-Object DisplayName -like "Microsoft.WindowsSoundRecorder" | Remove-AppxProvisionedPackage -Online -AllUsers
 
 # Uninstall XBox
 Get-AppxPackage "Microsoft.XboxGamingOverlay" -AllUsers | Remove-AppxPackage -AllUsers
 Get-AppxPackage "Microsoft.GamingApp" -AllUsers | Remove-AppxPackage -AllUsers
-Get-AppXProvisionedPackage -Online | Where DisplayName -like "Microsoft.XboxGamingOverlay" | Remove-AppxProvisionedPackage -Online -AllUsers
-Get-AppXProvisionedPackage -Online | Where DisplayName -like "Microsoft.GamingApp" | Remove-AppxProvisionedPackage -Online -AllUsers
+Get-AppXProvisionedPackage -Online | Where-Object DisplayName -like "Microsoft.XboxGamingOverlay" | Remove-AppxProvisionedPackage -Online -AllUsers
+Get-AppXProvisionedPackage -Online | Where-Object DisplayName -like "Microsoft.GamingApp" | Remove-AppxProvisionedPackage -Online -AllUsers
 
 # Uninstall Your Phone
 Get-AppxPackage "Microsoft.YourPhone" -AllUsers | Remove-AppxPackage -AllUsers
-Get-AppXProvisionedPackage -Online | Where DisplayName -like "Microsoft.YourPhone" | Remove-AppxProvisionedPackage -Online -AllUsers
+Get-AppXProvisionedPackage -Online | Where-Object DisplayName -like "Microsoft.YourPhone" | Remove-AppxProvisionedPackage -Online -AllUsers
 
 # Uninstall Zune Music (Groove)
 Get-AppxPackage "Microsoft.ZuneMusic" -AllUsers | Remove-AppxPackage -AllUsers
-Get-AppXProvisionedPackage -Online | Where DisplayName -like "Microsoft.ZuneMusic" | Remove-AppxProvisionedPackage -Online -AllUsers
+Get-AppXProvisionedPackage -Online | Where-Object DisplayName -like "Microsoft.ZuneMusic" | Remove-AppxProvisionedPackage -Online -AllUsers
 
 # Uninstall Zune Video
 Get-AppxPackage "Microsoft.ZuneVideo" -AllUsers | Remove-AppxPackage -AllUsers
-Get-AppXProvisionedPackage -Online | Where DisplayName -like "Microsoft.ZuneVideo" | Remove-AppxProvisionedPackage -Online -AllUsers
+Get-AppXProvisionedPackage -Online | Where-Object DisplayName -like "Microsoft.ZuneVideo" | Remove-AppxProvisionedPackage -Online -AllUsers
 
 # Uninstall Windows Media Player
 Disable-WindowsOptionalFeature -Online -FeatureName "WindowsMediaPlayer" -NoRestart -WarningAction SilentlyContinue | Out-Null
 
 # Uninstall Microsoft Teams (Personal Edition)
 Get-AppxPackage "MicrosoftTeams" -AllUsers | Remove-AppxPackage -AllUsers
-Get-AppXProvisionedPackage -Online | Where DisplayName -like "MicrosoftTeams" | Remove-AppxProvisionedPackage -Online -AllUsers
+Get-AppXProvisionedPackage -Online | Where-Object DisplayName -like "MicrosoftTeams" | Remove-AppxProvisionedPackage -Online -AllUsers
 
 # Uninstall Feedback Hub
 Get-AppxPackage "Microsoft.WindowsFeedbackHub" -AllUsers | Remove-AppxPackage -AllUsers
-Get-AppXProvisionedPackage -Online | Where DisplayName -like "Microsoft.WindowsFeedbackHub" | Remove-AppxProvisionedPackage -Online -AllUsers
+Get-AppXProvisionedPackage -Online | Where-Object DisplayName -like "Microsoft.WindowsFeedbackHub" | Remove-AppxProvisionedPackage -Online -AllUsers
 
 # Uninstall Get Started / Tips
 Get-AppxPackage "Microsoft.Getstarted" -AllUsers | Remove-AppxPackage -AllUsers
-Get-AppXProvisionedPackage -Online | Where DisplayName -like "Microsoft.Getstarted" | Remove-AppxProvisionedPackage -Online -AllUsers
+Get-AppXProvisionedPackage -Online | Where-Object DisplayName -like "Microsoft.Getstarted" | Remove-AppxProvisionedPackage -Online -AllUsers
 
 # Uninstall Quick Assist (Remotehilfe)
 Get-AppxPackage "MicrosoftCorporationII.QuickAssist" -AllUsers | Remove-AppxPackage -AllUsers
-Get-AppXProvisionedPackage -Online | Where DisplayName -like "MicrosoftCorporationII.QuickAssist" | Remove-AppxProvisionedPackage -Online -AllUsers
+Get-AppXProvisionedPackage -Online | Where-Object DisplayName -like "MicrosoftCorporationII.QuickAssist" | Remove-AppxProvisionedPackage -Online -AllUsers
 
 
 
