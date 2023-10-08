@@ -42,14 +42,10 @@ $WindowsStartColorMenu = @{
 function Set-WallpaperFromURL {
 
     param (
-        $url,
-        $LockScreenImageValue,
-        $directory
+        $URL, # e. g. 'https://example.org/cool-pic.jpg'
+        $File, # e. g. 'C:\LGE\my-wallpaper.jpg'
+        $Folder # e. g. 'C:\LGE\'
     )
-
-
-
-    # Test-MrParameter -ComputerName 'Moinsen'
 
     $RegKeyPath = "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\PersonalizationCSP"
 
@@ -61,17 +57,14 @@ function Set-WallpaperFromURL {
     $StatusValue = "1"
 
 
-    # $url = "https://www.thelazyadministrator.com/wp-content/uploads/2019/07/nicewall.jpg"
-    # $LockScreenImageValue = "C:\MDM\wallpaper_LazyAdmin.jpg"
-    # $directory = "C:\MDM\"
 
 
-    If ((Test-Path -Path $directory) -eq $false) {
-        New-Item -Path $directory -ItemType directory
+    If ((Test-Path -Path $Folder) -eq $false) {
+        New-Item -Path $Folder -ItemType directory
     }
 
     $wc = New-Object System.Net.WebClient
-    $wc.DownloadFile($url, $LockScreenImageValue)
+    $wc.DownloadFile($URL, $File)
 
 
 
@@ -82,16 +75,11 @@ function Set-WallpaperFromURL {
 
 
     New-ItemProperty -Path $RegKeyPath -Name $LockScreenStatus -Value $StatusValue -PropertyType DWORD -Force | Out-Null
-    New-ItemProperty -Path $RegKeyPath -Name $LockScreenPath -Value $LockScreenImageValue -PropertyType STRING -Force | Out-Null
-    New-ItemProperty -Path $RegKeyPath -Name $LockScreenUrl -Value $LockScreenImageValue -PropertyType STRING -Force | Out-Null
-    Set-ItemProperty -Path "HKCU:\Control Panel\Desktop" -Name "WallPaper" -Value $LockScreenImageValue -Force | Out-Null
+    New-ItemProperty -Path $RegKeyPath -Name $LockScreenPath -Value $File -PropertyType STRING -Force | Out-Null
+    New-ItemProperty -Path $RegKeyPath -Name $LockScreenUrl -Value $File -PropertyType STRING -Force | Out-Null
+    Set-ItemProperty -Path "HKCU:\Control Panel\Desktop" -Name "WallPaper" -Value $File -Force | Out-Null
 
     RUNDLL32.EXE USER32.DLL, UpdatePerUserSystemParameters 1, True
-
-    Write-Output "DESKTOP WP SET.2"
-    Write-Output $LockScreenImageValue
-
-
 }
 
 ###############################################################################
@@ -123,7 +111,7 @@ Write-Host ""
 
 if ( $user_i -eq $user_1 ) {
     Write-Host "$user_1 Account detected." -ForegroundColor "Cyan"
-    Set-WallpaperFromURL -url 'https://raw.githubusercontent.com/2ym/lge/main/wallpaper-1.jpg' -LockScreenImageValue 'C:\LGE\WallpaperAdmin.jpg' -directory 'C:\LGE\'
+    Set-WallpaperFromURL -URL 'https://raw.githubusercontent.com/2ym/lge/main/wallpaper-1.jpg' -File 'C:\LGE\WallpaperAdmin.jpg' -Folder 'C:\LGE\'
     # Start-Process -Verb runas -FilePath "C:\Users\$user_1\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Windows PowerShell\Windows PowerShell.lnk" -ArgumentList "iwr -useb https://raw.githubusercontent.com/2ym/lge/main/ac-test.ps1 | iex"
     Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Accent" -Name 'AccentColorMenu' -Value $WindowsAccentColorMenu.Ziegelrot -Force
     Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Accent" -Name 'StartColorMenu' -Value $WindowsStartColorMenu.Ziegelrot -Force
