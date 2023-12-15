@@ -384,4 +384,6 @@ Set-ItemProperty 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advan
 # Registry Control Panel View
 # Set-ItemProperty 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\ControlPanel' 'StartupPage' 1
 
+
+Write-Host 'LGE Version 0.0.1' -ForegroundColor 'Cyan'
 Read-Host -Prompt 'Press Enter to exit'
