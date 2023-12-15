@@ -125,23 +125,23 @@ Write-Host ''
 
 if ( $user_i -eq $user_1 ) {
     Write-Host '$user_1 Account detected.' -ForegroundColor 'Cyan'
-    Set-WallpaperFromURL -URL 'https://raw.githubusercontent.com/2ym/lge/main/wallpaper-1.jpg' -File 'C:\LGE\WallpaperAdmin.jpg' -Folder 'C:\GCE\'
+    Set-WallpaperFromURL -URL 'https://raw.githubusercontent.com/2ym/lge/main/wallpaper-1.jpg' -File 'C:\GCE\WallpaperAdmin.jpg' -Folder 'C:\GCE\'
     Set-AccentColor -Color 'Ziegelrot'
     
 } elseif ( $user_i -eq $user_2 ) {
     Write-Host '$user_2 Account detected.' -ForegroundColor 'Cyan'
-    Set-WallpaperFromURL -URL 'https://raw.githubusercontent.com/2ym/lge/main/wallpaper-2.jpg' -File 'C:\LGE\WallpaperLehrer.jpg' -Folder 'C:\GCE\'
+    Set-WallpaperFromURL -URL 'https://raw.githubusercontent.com/2ym/lge/main/wallpaper-2.jpg' -File 'C:\GCE\WallpaperLehrer.jpg' -Folder 'C:\GCE\'
     Set-AccentColor -Color 'Grasgruen'
 } elseif ( $user_i -eq $user_3 ) {
     Write-Host '$user_3 Account detected.' -ForegroundColor 'Cyan'
-    Set-WallpaperFromURL -URL 'https://raw.githubusercontent.com/2ym/lge/main/wallpaper-3.jpg' -File 'C:\LGE\WallpaperSchueler.jpg' -Folder 'C:\GCE\'
+    Set-WallpaperFromURL -URL 'https://raw.githubusercontent.com/2ym/lge/main/wallpaper-3.jpg' -File 'C:\GCE\WallpaperSchueler.jpg' -Folder 'C:\GCE\'
     Set-AccentColor -Color 'Grasgruen'
 } else {
     Write-Host 'No valid Account Name detected.' -ForegroundColor 'Red'
     break
 }
 
-Start-Transcript $ENV:TEMP\lge$rand.log -Append
+Start-Transcript C:\GCE\lge$rand.log -Append
 (Get-WmiObject Win32_ComputerSystem).Rename('Placeholder') | Out-Null
 
 ###############################################################################
