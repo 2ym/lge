@@ -1,5 +1,5 @@
-$rand = Get-Random -Maximum 999
-$build_s = 22621
+ $rand = Get-Random -Maximum 999
+$build_s = 22631
 $build_i = [System.Environment]::OSVersion.Version.Build
 $user_i = [System.Environment]::UserName
 $orga = 'GCE Bayreuth'
