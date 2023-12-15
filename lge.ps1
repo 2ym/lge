@@ -135,7 +135,7 @@ if ( $user_i -eq $user_1 ) {
 } elseif ( $user_i -eq $user_3 ) {
     Write-Host '$user_3 Account detected.' -ForegroundColor 'Cyan'
     Set-WallpaperFromURL -URL 'https://raw.githubusercontent.com/2ym/lge/main/wallpaper-3.jpg' -File 'C:\GCE\WallpaperSchueler.jpg' -Folder 'C:\GCE\'
-    Set-AccentColor -Color 'Grasgruen'
+    Set-AccentColor -Color 'Hellorange'
 } else {
     Write-Host 'No valid Account Name detected.' -ForegroundColor 'Red'
     break
@@ -385,5 +385,5 @@ Set-ItemProperty 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advan
 # Set-ItemProperty 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\ControlPanel' 'StartupPage' 1
 
 
-Write-Host 'LGE Version 0.0.2' -ForegroundColor 'Cyan'
+Write-Host 'LGE Version 0.0.3' -ForegroundColor 'Cyan'
 Read-Host -Prompt 'Press Enter to exit'
