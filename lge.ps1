@@ -53,6 +53,7 @@ function Set-AccentColor {
     Set-ItemProperty -Path $RegKeyPath -Name 'AccentPalette' -Value ([byte[]]$hex) -Force
     Stop-Process -ProcessName explorer -Force -ErrorAction SilentlyContinue
     Write-Host '$Color set as Accent Color.' -ForegroundColor 'Cyan'
+}
 
 
 ###############################################################################
