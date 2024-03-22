@@ -64,8 +64,46 @@ function Set-WallpaperFromURL {
 
     param (
         $URL, # e. g. 'https://example.org/cool-pic.jpg'
-        $File, # e. g. 'C:\LGE\my-wallpaper.jpg'
-        $Folder # e. g. 'C:\LGE\'
+        $File, # e. g. 'C:\GCE\my-wallpaper.jpg'
+        $Folder # e. g. 'C:\GCE\'
+    )
+
+    $RegKeyPath = 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\PersonalizationCSP'
+
+    $LockScreenPath = 'LockScreenImagePath'
+    $LockScreenStatus = 'LockScreenImageStatus'
+    $LockScreenUrl = 'LockScreenImageUrl'
+
+    $StatusValue = '1'
+
+    If ((Test-Path -Path $Folder) -eq $false) {
+        New-Item -Path $Folder -ItemType directory
+    }
+
+    $wc = New-Object System.Net.WebClient
+    $wc.DownloadFile($URL, $File)
+
+    if (!(Test-Path $RegKeyPath)) {
+        Write-Host 'Creating registry path $($RegKeyPath).'
+        New-Item -Path $RegKeyPath -Force | Out-Null
+    }
+
+    Set-ItemProperty -Path 'HKCU:\Control Panel\Desktop' -Name 'WallPaper' -Value $File -Force | Out-Null
+
+    RUNDLL32.EXE USER32.DLL, UpdatePerUserSystemParameters 1, True
+}
+
+
+###############################################################################
+## Set LockScreen WallPaper from URL                                         ##
+###############################################################################
+
+function Set-LockscreenWallpaperFromURL {
+
+    param (
+        $URL, # e. g. 'https://example.org/cool-pic.jpg'
+        $File, # e. g. 'C:\GCE\my-wallpaper.jpg'
+        $Folder # e. g. 'C:\GCE\'
     )
 
     $RegKeyPath = 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\PersonalizationCSP'
@@ -91,20 +129,18 @@ function Set-WallpaperFromURL {
     New-ItemProperty -Path $RegKeyPath -Name $LockScreenStatus -Value $StatusValue -PropertyType DWORD -Force | Out-Null
     New-ItemProperty -Path $RegKeyPath -Name $LockScreenPath -Value $File -PropertyType STRING -Force | Out-Null
     New-ItemProperty -Path $RegKeyPath -Name $LockScreenUrl -Value $File -PropertyType STRING -Force | Out-Null
-    Set-ItemProperty -Path 'HKCU:\Control Panel\Desktop' -Name 'WallPaper' -Value $File -Force | Out-Null
 
     RUNDLL32.EXE USER32.DLL, UpdatePerUserSystemParameters 1, True
 }
-
 
 ###############################################################################
 ## Verify right Windows Build                                                ##
 ###############################################################################
 
 if ( $build_i -eq $build_s ) {
-    Write-Host 'Windows Build $build_s detected.' -ForegroundColor 'Cyan'
+    Write-Host 'Windows Build' $build_s 'detected.' -ForegroundColor 'Cyan'
 } else {
-    Write-Host 'Windows Build $build_i detected, but LGE needs to run on Windows Build $build_s.' -ForegroundColor 'Red'
+    Write-Host 'Windows Build' $build_i 'detected, but LGE needs to run on Windows Build $build_s.' -ForegroundColor 'Red'
     break
 }
 
@@ -124,16 +160,16 @@ Write-Host '###########################' -ForegroundColor 'Blue'
 Write-Host ''
 
 if ( $user_i -eq $user_1 ) {
-    Write-Host '$user_1 Account detected.' -ForegroundColor 'Cyan'
+    Write-Host $user_1 'Account detected.' -ForegroundColor 'Cyan'
     Set-WallpaperFromURL -URL 'https://raw.githubusercontent.com/2ym/lge/main/wallpaper-1.jpg' -File 'C:\GCE\WallpaperAdmin.jpg' -Folder 'C:\GCE\'
+    Set-LockScreenWallpaperFromURL -URL 'https://raw.githubusercontent.com/2ym/lge/main/wallpaper-4.jpg' -File 'C:\GCE\WallpaperLockscreen.jpg' -Folder 'C:\GCE\'
     Set-AccentColor -Color 'Ziegelrot'
-    
 } elseif ( $user_i -eq $user_2 ) {
-    Write-Host '$user_2 Account detected.' -ForegroundColor 'Cyan'
+    Write-Host $user_2 'Account detected.' -ForegroundColor 'Cyan'
     Set-WallpaperFromURL -URL 'https://raw.githubusercontent.com/2ym/lge/main/wallpaper-2.jpg' -File 'C:\GCE\WallpaperLehrer.jpg' -Folder 'C:\GCE\'
     Set-AccentColor -Color 'Grasgruen'
 } elseif ( $user_i -eq $user_3 ) {
-    Write-Host '$user_3 Account detected.' -ForegroundColor 'Cyan'
+    Write-Host $user_3 'Account detected.' -ForegroundColor 'Cyan'
     Set-WallpaperFromURL -URL 'https://raw.githubusercontent.com/2ym/lge/main/wallpaper-3.jpg' -File 'C:\GCE\WallpaperSchueler.jpg' -Folder 'C:\GCE\'
     Set-AccentColor -Color 'Hellorange'
 } else {
