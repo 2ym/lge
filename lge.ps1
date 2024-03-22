@@ -140,8 +140,8 @@ function Set-LockscreenWallpaperFromURL {
 if ( $build_i -eq $build_s ) {
     Write-Host 'Windows Build' $build_s 'detected.' -ForegroundColor 'Cyan'
 } else {
-    Write-Host 'Windows Build' $build_i 'detected, but LGE needs to run on Windows Build $build_s.' -ForegroundColor 'Red'
-    break
+    Write-Host 'Windows Build' $build_i 'detected, but LGE needs to run on Windows Build' $build_s'.' -ForegroundColor 'Red'
+#    break
 }
 
 # cls
