@@ -137,22 +137,6 @@ function Set-LockscreenWallpaperFromURL {
 }
 
 ###############################################################################
-## Install Teams Enterprise                                                  ##
-###############################################################################
-
-function Install-Teams {
-
-    $url = 'https://statics.teams.cdn.office.net/production-windows-x64/enterprise/webview2/lkg/MSTeams-x64.msix'
-    $dest = '%TEMP%\MSTeams-x64.msix'
-
-
-    If ((Test-Path -Path $Folder) -eq $false) {
-        New-Item -Path $Folder -ItemType directory
-    }
-
-}
-
-###############################################################################
 ## Verify right Windows Build                                                ##
 ###############################################################################
 
