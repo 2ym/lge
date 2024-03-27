@@ -8,6 +8,9 @@ $user_1 = 'Admin'
 $user_2 = 'Lehrer'
 $user_3 = 'Schueler'
 
+$teams_url = 'https://statics.teams.cdn.office.net/production-windows-x64/enterprise/webview2/lkg/MSTeams-x64.msix'
+$teams_dir = 'C:\GCE\MSTeams-x64.msix'
+
 $WindowsAccentColorMenu = @{
     Gelbgold   = '0xff00b9ff'
     Gold       = '0xff008cff'
@@ -134,6 +137,22 @@ function Set-LockscreenWallpaperFromURL {
 }
 
 ###############################################################################
+## Install Teams Enterprise                                                  ##
+###############################################################################
+
+function Install-Teams {
+
+    $url = 'https://statics.teams.cdn.office.net/production-windows-x64/enterprise/webview2/lkg/MSTeams-x64.msix'
+    $dest = '%TEMP%\MSTeams-x64.msix'
+
+
+    If ((Test-Path -Path $Folder) -eq $false) {
+        New-Item -Path $Folder -ItemType directory
+    }
+
+}
+
+###############################################################################
 ## Verify right Windows Build                                                ##
 ###############################################################################
 
@@ -164,14 +183,17 @@ if ( $user_i -eq $user_1 ) {
     Set-WallpaperFromURL -URL 'https://raw.githubusercontent.com/2ym/lge/main/wallpaper-1.jpg' -File 'C:\GCE\WallpaperAdmin.jpg' -Folder 'C:\GCE\'
     Set-LockScreenWallpaperFromURL -URL 'https://raw.githubusercontent.com/2ym/lge/main/wallpaper-4.jpg' -File 'C:\GCE\WallpaperLockscreen.jpg' -Folder 'C:\GCE\'
     Set-AccentColor -Color 'Ziegelrot'
+    Invoke-WebRequest -Uri $teams_url -OutFile $teams_dir
 } elseif ( $user_i -eq $user_2 ) {
     Write-Host $user_2 'Account detected.' -ForegroundColor 'Cyan'
     Set-WallpaperFromURL -URL 'https://raw.githubusercontent.com/2ym/lge/main/wallpaper-2.jpg' -File 'C:\GCE\WallpaperLehrer.jpg' -Folder 'C:\GCE\'
     Set-AccentColor -Color 'Grasgruen'
+    Add-AppxPackage -Path $teams_dir
 } elseif ( $user_i -eq $user_3 ) {
     Write-Host $user_3 'Account detected.' -ForegroundColor 'Cyan'
     Set-WallpaperFromURL -URL 'https://raw.githubusercontent.com/2ym/lge/main/wallpaper-3.jpg' -File 'C:\GCE\WallpaperSchueler.jpg' -Folder 'C:\GCE\'
     Set-AccentColor -Color 'Hellorange'
+    Add-AppxPackage -Path $teams_dir
 } else {
     Write-Host 'No valid Account Name detected.' -ForegroundColor 'Red'
     break
